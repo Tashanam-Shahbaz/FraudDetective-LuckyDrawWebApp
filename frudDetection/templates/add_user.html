@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav>
+    <a id="Logo" href="/user_admin">Lucky Drawer</a>
+</nav>
+
+<!-- Navbar is ending from here! -->
+
+<!-- adding user is starting from here! -->
+<div class="reg-parent">
+    <div class="register-page">
+        <h1>Add User</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}"
+                placeholder="{{ field.label }}" />
+            {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+            {% endfor %}
+
+            {% endfor %}
+
+            <button type="submit" class="reg-btn">Submit</button>
+        </form>
+
+    </div>
+</div>
+<!-- adding user is ending from here! -->
+
+
+
+<footer style="background-color: #14a37f;">
+    <h3 style="color: white;">Follow Us On Social Platform</h3>
+    <p style="color: white;">Lorem ipsum dolor sit consectetur adipisicing elit Mollitia distinctio officia
+        necessitatibus accusantium.</p>
+    <div class="icons">
+        <i style="color: white;" class="fa-brands fa-facebook-f"></i>
+        <i style="color: white;" class="fa-brands fa-instagram"></i>
+        <i style="color: white;" class="fa-brands fa-linkedin-in"></i>
+        <i style="color: white;" class="fa-brands fa-x-twitter"></i>
+    </div>
+</footer>
+{% endblock %}

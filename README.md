@@ -13,7 +13,7 @@ This repo is to enhance the security of lucky draw websites. While it provides p
 
 ## Technologies Used
 
-- **Programming Language:** :python:
+- **Programming Language:** Python , HTML , CSS
 - **Frameworks/Libraries:** Scikit-learn / DJANGO
 - **Database:** phpMyAdmin 
 

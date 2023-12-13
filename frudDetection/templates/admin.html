@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% if messages %}
+  {% for msg in messages %}
+    <script>
+      alert("{{ msg }}");
+    </script>
+  {% endfor %}
+{% endif %}
+
+  <!-- Navbar is starting from here! -->
+  {% if user.is_authenticated and user.is_superuser %}
+  <nav>
+    <a id="Logo" href="/user_admin">Lucky Drawer</a>
+    <div class="admin-profile">
+      <h3>Admin</h3>
+      <div class="admin-menu">
+        <div class="admin-img" id="adminImg"></div>
+        <div class="dd-menu" id="dd-drop">
+          <div class="dd-left">
+            <ul>
+              <li><i class="fa-solid fa-layer-group"></i></li>
+              <li><i class="fa-solid fa-user-gear"></i></li>
+              <li><i class="fa-solid fa-right-from-bracket"></i></li>
+            </ul>
+          </div>
+          <div class="dd-right">
+            <ul>
+              <li><a href="/user_admin">Dashboard</a></li>
+              <li><a href="/update_admin">Update Profile</a></li>
+              <li><a href="">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Navbar is starting from here! -->
+
+  <div class="banner"></div>
+
+
+  <!-- User data (for admin) is starting from here! -->
+
+  <main>
+    <div class="user-data-admin">
+    <div class="user-content">
+      <h2>Users Information</h2>
+      <a href="/add_user">Add Users</a>
+    </div>
+    <div class="users">
+<!-- <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John Doe</td>
+      <td>john@example.com</td>
+      <td>123 Main St, Cityville</td>
+      <td>555-1234</td>
+      <td><a class="action" href="edit-user.html">Edit</a> <a class="action" href="">Delete</a></td>
+    </tr>
+  </tbody>
+</table> -->
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.address}}</td>
+      <td><a class="action" href="{% url 'update_user' user.id %}">Edit</a> 
+        <a class="action" href="{% url 'delete_user' user.id %}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    </div>
+  </div>
+  </main>
+
+  <footer>
+    <h3>Follow Us On Social Platform</h3>
+    <p>Lorem ipsum dolor sit consectetur adipisicing elit Mollitia distinctio officia necessitatibus accusantium.</p>
+    <div class="icons">
+    <i class="fa-brands fa-facebook-f"></i>
+    <i class="fa-brands fa-instagram"></i>
+    <i class="fa-brands fa-linkedin-in"></i>
+    <i class="fa-brands fa-x-twitter"></i>
+</div>
+</footer>
+{% endif %}
+
+
+{% endblock%}

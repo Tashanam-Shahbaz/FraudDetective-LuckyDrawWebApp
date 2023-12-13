@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Navbar is starting from here! -->
+
+<nav>
+    <a id="Logo" href="/">Lucky Drawer</a>
+    <div class="links" id="navLinks">
+      <i class="fa-solid fa-circle-xmark" id="icon1" onclick="hideMenu()"></i>
+      <a id="navLinks" href="/"> Home </a>
+      <a id="navLinks" href="#ABOUT">About Us</a>
+      <a id="navLinks" href="#PRIVACY">Privacy Policy</a>
+      <a id="navLinks" href="#CONTACT">Contact US</a>
+    </div>
+    <i class="fa2 fa-solid fa-bars" id="icon2" onclick="showMenu()"></i>
+  </nav>
+
+  <!-- Navbar is ending from here! -->
+   <!-- Hero section is starting from here -->
+
+   <div class="hero-sec row">
+    <div class="hero-cont">
+    <div class="hero-txt">
+      <h1>The Biggest<br> Lucky Drawer Website!</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab saepe vitae alias harum quia dolores repellendus maiores accusamus.</p>
+    </div>
+    <div class="hero-btn">
+      <a class="register" href="/signup">Register</a>
+      <a class="login" href="/signin">Login</a>
+    </div>
+  </div>
+    <div class="hero-img"></div>
+  </div>
+
+  <!-- Hero section is ending from here -->
+
+  <!-- About section is starting from here! -->
+
+  <div id="ABOUT" class="about-parent">
+    <div class="about-us">
+      <div class="about-img"></div>
+      <div class="about-content">
+        <h2>About Us</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo dolorem exercitationem rerum eius? Labore animi in tempore dolores ex earum a voluptas iste, consequatur dignissimos? Asperiores earum accusamus consequatur voluptas, Asperiores earum accusamus consequatur voluptas.</p>
+      </div>
+    </div>
+  </div>
+
+      <!-- About section is starting from here! -->
+
+      <!-- Privacy Policy Section Is starting from here! -->
+
+      <div id="PRIVACY" class="privacy-parent">
+        <div class="privacy-policy">
+          <div class="privacy-content">
+            <h2>Privacy Policy</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo dolorem exercitationem rerum eius? Labore animi in tempore dolores ex earum a voluptas iste, consequatur dignissimos? Asperiores earum accusamus consequatur voluptas, Asperiores earum accusamus consequatur voluptas  Asperiores earum accusamus consequatur voluptas, Asperiores earum accusamus consequatur voluptas.</p>
+          </div>
+          <div class="privacy-img"></div>
+        </div>
+      </div>
+
+      <!-- Privacy Policy Section Is ending from here! -->
+
+      <!-- Contact Us page is starting from here! -->
+
+      <div id="CONTACT" class="contact-parent">
+        <div class="contact">
+            <div class="contact-col">
+              <h2>Contact Us</h2>
+                <div>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>
+                        <h5>XYZ Road, ABC Area</h5>
+                        <p>Karachi, Pakistan</p>
+                    </span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-phone"></i>
+                    <span>
+                        <h5>+1 2342 3456732</h5>
+                        <p>You can also call us</p>
+                    </span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>
+                        <h5>info@lucky-drawer.com</h5>
+                        <p>Email Us Your Query</p>
+                    </span>
+                </div>
+            </div>
+            <div class="contact-col">
+                <form action="">
+                    <input type="text" placeholder="Enter your name" required>
+                    <input type="email" placeholder="Enter your email" required>
+                    <input type="text" placeholder="Enter your subject" required>
+                    <textarea rows="8" placeholder="Message" required></textarea>
+                    <button type="submit" class="contact-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+      <!-- Contact Us page is ending from here! -->
+
+      <footer>
+        <h3>Follow Us On Social Platform</h3>
+        <p>Lorem ipsum dolor sit consectetur adipisicing elit Mollitia distinctio officia necessitatibus accusantium.</p>
+        <div class="icons">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-linkedin-in"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+    </div>
+    </footer>
+
+
+  <!-- JAVASCRIPT FOR TOGLE MENU -->
+
+  <script>
+
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+        navLinks.style.right = "0px";
+    }
+    function hideMenu() {
+        navLinks.style.right = "-300px";
+    }
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav>
+  <a id="Logo" href="/">Lucky Drawer</a>
+  <div class="links" id="navLinks">
+    <i class="fa-solid fa-circle-xmark" id="icon1" onclick="hideMenu()"></i>
+    <a id="navLinks" href="/"> Home </a>
+  </div>
+  <i class="fa2 fa-solid fa-bars" id="icon2" onclick="showMenu()"></i>
+</nav>
+
+<form method="post">
+
+  <div class="fbox">
+    <div class="box">
+      <h2>Login</h2>
+      <form method="post">
+
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" name="username" />
+          <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" />
+          <i class="fa-solid fa-lock"></i>
+        </div>
+
+        <button id="btn" type="submit" >Login</button>
+          <p id="form-txt">Don't have an account? <a id="form-txt" href="register.html">Make an account!</a></p>
+      </form>
+    </div>
+  </div>
+
+</form>
+
+<footer style="background-color: #14a37f;">
+  <h3 style="color: white;">Follow Us On Social Platform</h3>
+  <p style="color: white;">Lorem ipsum dolor sit consectetur adipisicing elit Mollitia distinctio officia necessitatibus accusantium.</p>
+  <div class="icons">
+  <i style="color: white;" class="fa-brands fa-facebook-f"></i>
+  <i style="color: white;" class="fa-brands fa-instagram"></i>
+  <i style="color: white;" class="fa-brands fa-linkedin-in"></i>
+  <i style="color: white;" class="fa-brands fa-x-twitter"></i>
+</div>
+</footer>
+
+
+<script>
+
+  var navLinks = document.getElementById("navLinks");
+
+  function showMenu() {
+      navLinks.style.right = "0px";
+  }
+  function hideMenu() {
+      navLinks.style.right = "-300px";
+  }
+
+</script>
+
+{% endblock %}

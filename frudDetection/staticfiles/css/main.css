@@ -1,0 +1,1041 @@
+/* body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: centers;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .container {
+    width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;f
+  }
+  
+  input, button {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+   */
+
+   *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+body{
+    background-color: #ffffff;
+    
+}
+/* Navbar is starting from here! */
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5%;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #14a37f;
+    position: relative;
+    width: 100%;
+}
+#Logo {
+    padding: 0.5% 0.5% 0.5% 0.5%;
+    font-size: 25px;
+    color: white;
+    font-weight: 600;
+}
+
+nav a{
+    text-decoration: none;
+    color: white;
+    margin: 0 30px 0;
+    font-weight: 500;
+    position: relative;
+    transition: 0.4s;
+}
+
+a::before{
+    content: '';
+    width: 0%;
+    height: 4px;
+    background-color: #008060;
+    position: absolute;
+    bottom: -9px;
+    transition: 0.4s;
+}
+#navLinks:hover::before{
+    width: 100%;
+}
+#icon1, #icon2{
+    display: none;
+}
+
+
+/* Navbar is ending from here! */
+
+/* Hero section is starting from here! */
+
+.hero-sec{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    background:linear-gradient(rgba(255, 255, 255,0.8), rgba(255, 255, 255,0.8)), url('../images/landing.png');
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+    padding: 0 50px;
+    margin: 70px 0 ;
+}
+.hero-cont{
+    width: 50%;
+}
+.hero-txt h1{
+    color: #14a37f;
+    font-size: 42px;
+    margin-bottom: 1rem;
+}
+.hero-txt p{
+    line-height: 2;
+    font-size: 0.9rem;
+    color: #777;
+}
+.hero-img{
+    width: 600px;
+    height: 400px;
+    background-image: url("../images/lucky_pin.png");
+    background-size: cover;
+}
+.hero-btn{
+    margin-top: 40px;
+}
+.hero-btn a{
+    margin-right: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+}
+.register{
+    background-color: #14a37f;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: 0.7s;
+}
+.login{
+    background-color: #14a37f;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: 0.7s;
+}
+.login:hover, .register:hover{
+    background-color: #14a37fae;
+}
+
+/* Hero section is ending from here! */
+
+/* login section is starting from here! */
+
+.fbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:linear-gradient(rgba(255, 255, 255,0.8), rgba(255, 255, 255,0.8)), url('../images/bg-reg-or-log.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%; 
+    overflow: hidden;
+}
+.box{
+    width: 400px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 30px;
+    background-color:  #0080606b;
+}
+.box h2 {
+    padding: 20px, 0px;
+    font-size: 40px;
+    color: white;
+    font-weight: bolder;
+}
+.form-group{
+    position: relative;
+    width: 330px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #004a35;
+}
+.form-group  input{
+    height: 50px ;
+    width: 100% ;
+    border: none ;
+    outline: none ;
+    background: transparent ;
+    font-size: 15px ; 
+    color: rgb(255, 255, 255) ;
+    padding: 0 30px 0 10px ;
+}
+
+.form-group label{
+    position: absolute ;
+    left: 10px ;
+    transform: translateY(-50%) ;
+    font-size: 18px ;
+    font-weight: 600 ;
+    color: #004a35 ;
+    transition: all ease 0.4s ;
+}
+
+
+.form-group i {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #008060;
+}
+/* form p{
+    padding: 10px 0;
+    text-align: center;
+}
+form p a{
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 0;
+    text-decoration: none;
+}
+form p a:hover{
+    text-decoration: underline;
+    font-style: italic;
+    font-weight: 600;
+} */
+#btn{
+    width: 90%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: #004a35;
+    font-size: 20px;
+    font-weight: 600;
+    overflow: hidden;
+    transition: all ease 0.7s;
+    cursor: pointer;
+    color: #ffffff;
+}
+#btn:hover{
+scale: 0.9;
+background-color: #004a359d;
+}
+
+/* login section is ending from here! */
+
+
+/* register section is starting from here! */
+
+.reg-parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:linear-gradient(rgba(255, 255, 255,0.8), rgba(255, 255, 255,0.8)), url('../images/bg-reg-or-log.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%; 
+    overflow: hidden;
+}
+.register-page{
+    width: 35%;
+    background-color: #14a37fcf;
+    padding: 20px 10px;
+    text-align: center;
+    border-radius: 10px;  
+}
+.register-page h1{
+    padding: 2%;
+    color: white;
+    font-weight: bold;
+}
+
+.register-page input{
+    height: 5%;
+    width: 82%;
+    border: none;
+    outline: none;
+    margin: 5px 0;
+    padding: 11px;
+    background: #f0f0f0;
+    font-size: 12px;
+    border-radius: 8px;
+    color: #008060;
+    font-weight: 700;
+}
+.reg-btn{
+    margin: 2% 0;
+    padding: 2% 5%;
+    width: 40%;
+    border: none;
+    border-radius: 50px;
+    background-color: #008060;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.5s
+}
+
+.reg-btn:hover{
+    scale: 0.9;
+}
+
+/* register section is ending from here! */
+
+/* About Us Section is starting from here! */
+
+.about-parent{
+    width: 100%;
+    height: 100%;
+    background:linear-gradient(rgba(255, 255, 255,0.8), rgba(255, 255, 255,0.8)), url('../images/landing.png');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto;
+}
+.about-us{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+.about-content{
+    width: 50%;
+}
+.about-content h2{
+    color: #14a37f;
+    font-size: 28px;
+    margin-bottom: 1rem;
+}
+.about-content p{
+    line-height: 2;
+    font-size: 0.85rem;
+    color: #777;
+}
+.about-img{
+    width: 500px;
+    height: 300px;
+    background-image: url("../images/About.PNG");
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+}
+
+/* About Us Section is ending from here! */
+
+/* Privacy Policy Section is starting from here! */
+
+.privacy-parent{
+    width: 100%;
+    height: 100%;
+    background:linear-gradient(rgba(255, 255, 255,0.8), rgba(255, 255, 255,0.8)), url('../images/landing.png');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto;
+}
+.privacy-policy{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+.privacy-content{
+    width: 50%;
+}
+.privacy-content h2{
+    color: #14a37f;
+    font-size: 28px;
+    margin-bottom: 1rem;
+}
+.privacy-content p{
+    line-height: 2;
+    font-size: 0.85rem;
+    color: #777;
+}
+.privacy-img{
+    width: 500px;
+    height: 300px;
+    background-image: url("../images/Privacy.PNG");
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+}
+
+/* Privacy Policy Section is ending from here! */
+
+/* Contact section is starting from here! */
+
+.contact-parent{
+    width: 100%;
+    height: 100%;
+    background:linear-gradient(rgba(255, 255, 255,0.8), rgba(255, 255, 255,0.8)), url('../images/landing.png');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto;
+}
+.contact{
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+.contact-col{
+    flex-basis: 50%;
+    margin-bottom: 30px;
+}
+.contact-col h2{
+    font-size: 30px;
+    color: #14a37f;
+    margin-bottom: 50px;
+}
+.contact-col div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.contact-col div i{
+    font-size: 28px;
+    color: #14a37f;
+    margin: 10px;
+    margin-right: 30px;
+}
+.contact-col div p{
+    padding: 0;
+}
+.contact-col div h5{
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 400;
+}
+.contact-col input, .contact-col textarea{
+    width: 100%;
+    margin-bottom: 17px;
+    padding: 1rem;
+    outline: none;
+    border: 1px solid #ccc;
+}
+.contact-btn{
+    background-color: #14a37f;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    border: none;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: 0.5s;
+}
+.contact-btn:hover{
+    scale: 0.9;
+}
+
+/* Contact section is ending from here! */
+
+/* Footer */
+
+footer{
+    width: 100%;
+    text-align: center;
+    padding: 10px 0 30px;
+}
+footer h3{
+    margin-bottom: 25px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+footer p{
+    color: #777;
+    padding-bottom: 20px;
+}
+.icons i{
+    color: #14a37f;
+    margin: 0 13px;
+    padding: 18px 0;
+    cursor: pointer;
+}
+
+    /* Footer */
+
+
+
+
+/* Doing Responsivness!! */  /* Doing Responsivness!! */  /* Doing Responsivness!! */
+/* Doing Responsivness!! */
+
+
+@media (max-width:700px){
+
+    /* Navbar is starting from here! */
+
+    nav{
+        padding-left: 0px;
+    }
+    #Logo{
+        font-size: 26px;
+        font-weight: 600;
+    }
+    nav a{
+        display:block;
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+    #icon1, #icon2{
+        display: block;
+    }
+    .links {
+        min-height: 100vh;
+        width: 200px;
+        background-color: #14a37f;
+        z-index: 2;
+        position: fixed;
+        right: -300px;
+        top: 0;
+        text-align: left;
+        transition: 0.7s;
+    }
+    #icon1{
+        display: block;
+        z-index: 2;
+        margin: 0.635rem;
+        font-size: 1.375rem;
+        color: #ffffff;
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+    }
+    #icon2{
+        display: block;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* Navbar is ending from here! */
+
+    /* Hero section is starting from here! */
+
+    .hero-sec{
+        height: 100vh;
+        flex-direction: column;
+        align-items: left;
+        padding: auto;
+    }
+    .hero-img{
+        width: 400px;
+        height: 250px;
+        background-image: url("../images/lucky_pin.png");
+        background-size: cover;
+    }
+    .hero-cont{
+        position: absolute;
+        top: 420px;
+        width: 90%;
+    }
+    .hero-cont h1{
+        font-size: 30px;
+    }
+    .hero-cont p{
+        font-size: 12px;
+    }
+    .hero-btn a{
+        font-weight: 500;
+        font-size: 14px;
+    }
+    .register, .login{
+        padding: 8px 18px;
+    }
+
+    /* Hero section is ending from here! */
+
+    /* login section is starting from here! */
+
+    .box{
+        width: 350px;
+        height: 450px;
+    }
+
+    .form-group{
+        width: 250px;
+        margin: 30px auto;
+    }
+    .form-group span{
+        font-size: 14px;
+        font-weight: 500;
+    }
+    #id_username , #id_password{
+        font-size: 14px;
+        font-weight: 500;
+    }
+    #form-txt{
+        font-size: 12px;
+    }
+    #btn{
+        width: 90%;
+        height: 30px;
+        font-size: 16px;
+        font-weight: 500;
+        margin-left: 5%;
+    }
+
+    /* login section is starting from here! */
+
+    /* register section is starting from here! */
+
+    .register-page{
+        width: 70%;
+        padding: 18px 8px;
+        border-radius: 10px;  
+    }
+    .register-page h1{
+        padding: 18px;
+        font-weight: 700;
+    }
+    .register-page input{
+        height: 40px;
+        width: 80%;
+        margin: 8px 0;
+        padding: 8px;
+        font-size: 14px;
+    }
+    .reg-btn{
+        margin: 18px 0;
+        padding: 11px 28px;
+        width: 40%;
+        font-size: 14px;
+    }
+
+    /* register section is endting from here! */
+
+    /* About Us Section is starting from here! */
+
+    .about-us{
+        flex-direction: column;
+    }
+    .about-content{
+        width: 90%;
+    }
+    .about-img{
+        width: 90%;
+        height: 200px;
+        margin-bottom: 40px;
+    }
+
+    /* About Us Section is starting from here! */
+
+    /* Privacy Policy Section is starting from here! */
+
+    .privacy-policy{
+        flex-direction: column-reverse;
+    }
+    .privacy-content{
+        width: 90%;
+    }
+    .privacy-img{
+        width: 90%;
+        height: 200px;
+        margin-bottom: 40px;
+    }
+
+    /* Privacy Policy Section is endting from here! */
+
+    /* Contact section is starting from here! */
+
+    .contact{
+        display: flex;
+        flex-direction: column;
+        margin-right: 25px;
+    }
+    .contact-col h2{
+        font-size: 28px;
+    }
+    .contact-col form{
+        width: 90%;
+    }
+    .contact-col div i{
+        font-size: 23px;
+        margin-right: 16px;
+    }
+    .contact-col div h5{
+        font-size: 16px;
+    }
+    .contact-btn{
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+
+    /* Contact section is ending from here! */
+
+    /* Footer */
+
+    footer p{
+        font-size: 12px;
+        padding: 0 15px;
+    }
+    /* Footer */
+
+
+    .admin-profile h3 {
+        font-size: 16px;
+      }
+      .admin-img {
+        height: 35px;
+        width: 35px;
+        margin-left: 10px;
+        border: 3px solid white;
+      }
+    
+      /* Navbar is ending from here! */
+    
+      /* User data (for admin) is starting from here! */
+    
+      .user-content h2 {
+        font-size: 26px;
+        margin-right: 15px;
+      }
+      .user-content a {
+        padding: 4px 8px;
+        font-size: 13px;
+      }
+    
+      .users {
+        overflow-x: auto;
+      }
+      .users th,
+      .users td {
+        padding: 8px;
+      }
+      .users th {
+        font-size: 14px;
+      }
+      .users td {
+        font-size: 10px;
+      }
+      .action {
+        display: block;
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      /* adding user section is starting from here! */
+
+  .add-user-page {
+    width: 70%;
+    padding: 18px 8px;
+    border-radius: 10px;
+  }
+  .add-user-page h1 {
+    padding: 18px;
+    font-weight: 700;
+  }
+  .add-user-page input {
+    height: 40px;
+    width: 80%;
+    margin: 8px 0;
+    padding: 8px;
+    font-size: 14px;
+  }
+  .add-user-btn {
+    margin: 18px 0;
+    padding: 11px 28px;
+    width: 40%;
+    font-size: 14px;
+  }
+
+  /* adding user section is ending from here! */
+}
+
+
+.admin-menu {
+    position: relative;
+  }
+  .admin-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .admin-profile h3 {
+    color: white;
+  }
+  .admin-img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-image: url("/images/admin.png");
+    background-size: cover;
+    margin-left: 15px;
+    cursor: pointer;
+    border: 4px solid white;
+  }
+  .admin-img.active {
+    display: block;
+  }
+  .dd-menu {
+    position: absolute;
+    top: 55px;
+    width: 214px;
+    right: 4px;
+    display: flex;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #045d45bb;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+  }
+  .dd-menu.show-dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+  .dd-menu::before {
+    content: "";
+    position: absolute;
+    top: -18px;
+    right: 8px;
+    border: 10px solid;
+    border-color: transparent transparent #045d45bb transparent;
+  }
+  .dd-menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+  }
+  .dd-right a:hover {
+    color: #dfdfdfee;
+  }
+  .dd-left li,
+  .dd-right li {
+    list-style-type: none;
+  }
+  .dd-left {
+    height: 100%;
+    padding: 15px 20px;
+    color: white;
+    background-color: #14a37f;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+  .dd-right {
+    padding: 15px 20px;
+  }
+  .dd-right li {
+    margin-bottom: 15px;
+  }
+  .dd-left li {
+    margin-bottom: 15px;
+  }
+  
+  /* Navbar is ending from here! */
+  
+  .banner {
+    width: 100%;
+    height: 240px;
+    background-image: url(/images/admin-banner.png);
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* User data (for admin) is starting from here! */
+  
+  main {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+  .user-data-admin {
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .user-content {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  .user-content h2 {
+    font-size: 28px;
+    color: #14a37f;
+    margin-right: 20px;
+  }
+  .user-content a {
+    background-color: #14a37f;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 8px;
+    transition: 0.5s;
+    border-radius: 50px;
+    font-size: 14px;
+  }
+  .user-content a:hover {
+    background-color: #14a37fba;
+  }
+  .users table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 2px solid #14a37f;
+  }
+  .users th,
+  .users td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  .users th {
+    background-color: #f2f2f2;
+  }
+  .users tr:hover {
+    background-color: #f5f5f5;
+  }
+  .action {
+    padding: 5px 20px;
+    background-color: #14a37f;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    color: white;
+    transition: 0.5s;
+  }
+  .action:hover {
+    background-color: #14a37fba;
+  }
+  
+  /* User data (for admin) is ending from here! */
+  /* Footer */
+  
+  footer {
+    width: 100%;
+    text-align: center;
+    padding: 50px 0 30px;
+  }
+  footer h3 {
+    margin-bottom: 25px;
+    margin-top: 20px;
+    font-weight: 600;
+  }
+  footer p {
+    color: #777;
+    padding-bottom: 20px;
+  }
+  .icons i {
+    color: #14a37f;
+    margin: 0 13px;
+    padding: 18px 0;
+    cursor: pointer;
+  }
+  
+  /* Footer */
+  
+  /* adding user section is starting from here! */
+  
+  .add-user-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)
+      ),
+      url("/images/bg-reg-or-log.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+  .add-user-page {
+    width: 40%;
+    background-color: #14a37fcf;
+    padding: 20px 10px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  .add-user-page h1 {
+    padding: 20px;
+    color: white;
+    font-weight: 700;
+  }
+  
+  .add-user-page input {
+    height: 50px;
+    width: 70%;
+    border: none;
+    outline: none;
+    margin: 10px 0;
+    padding: 10px;
+    background: #f0f0f0;
+    font-size: 18px;
+    border-radius: 8px;
+    color: #008060;
+  }
+  .add-user-btn {
+    margin: 20px 0;
+    padding: 13px 30px;
+    width: 40%;
+    border: none;
+    border-radius: 50px;
+    background-color: #008060;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    transition: 0.5s;
+  }
+  .add-user-btn:hover {
+    scale: 0.9;
+  }
+  
+  /* adding user section is ending from here! */

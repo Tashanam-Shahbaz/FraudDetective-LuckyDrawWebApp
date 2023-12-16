@@ -1,6 +1,8 @@
 # FraudDetection-LuckyDrawWebApp
 This repo is to enhance the security of lucky draw websites. While it provides powerful tools for fraud detection, it is essential to adapt and configure the system according to specific website requirements and integrate it alongside other security measures for a robust defense against fraudulent activities.
 
+<img src="images/frud.jpg" />
+
 ## Key Features
 
 - **Sophisticated Fraud Detection Algorithms:** Implementing state-of-the-art algorithms to detect and prevent fraudulent activities within the lucky draw system.

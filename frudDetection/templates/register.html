@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Lucky Drawer - Login</title>
+  </head>
+  <body>
+    <!-- Navbar is starting from here! -->
+
+    <nav>
+      <a id="Logo" href="landing.html">Lucky Drawer</a>
+      <div class="links" id="navLinks">
+        <i class="fa-solid fa-circle-xmark" id="icon1" onclick="hideMenu()"></i>
+        <a id="navLinks" href="landing.html"> Home </a>
+      </div>
+      <i class="fa2 fa-solid fa-bars" id="icon2" onclick="showMenu()"></i>
+    </nav>
+
+    <!-- Navbar is ending from here! -->
+
+    <!-- Register is starting from here! -->
+    
+    <div class="reg-parent">
+    <div class="register-page">
+        <h1>Register</h1>
+        <form action="">
+            <input type="text" placeholder="First Name">
+            <input type="text" placeholder="last Name">
+            <input type="email" placeholder="Enter your Email">
+            <input type="password" placeholder="Password">
+        </form>
+        <button type="submit" class="reg-btn">Register</button>
+    </div>
+</div>
+
+
+<footer style="background-color: #14a37f;">
+  <h3 style="color: white;">Follow Us On Social Platform</h3>
+  <p style="color: white;">Lorem ipsum dolor sit consectetur adipisicing elit Mollitia distinctio officia necessitatibus accusantium.</p>
+  <div class="icons">
+  <i style="color: white;" class="fa-brands fa-facebook-f"></i>
+  <i style="color: white;" class="fa-brands fa-instagram"></i>
+  <i style="color: white;" class="fa-brands fa-linkedin-in"></i>
+  <i style="color: white;" class="fa-brands fa-x-twitter"></i>
+</div>
+</footer>
+
+
+<!-- JAVASCRIPT FOR TOGLE MENU -->
+
+<script>
+
+  var navLinks = document.getElementById("navLinks");
+
+  function showMenu() {
+      navLinks.style.right = "0px";
+  }
+  function hideMenu() {
+      navLinks.style.right = "-300px";
+  }
+
+</script>
+  </body>
+</html>

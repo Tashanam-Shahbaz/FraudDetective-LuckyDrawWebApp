@@ -928,9 +928,11 @@ footer p{
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+   
   }
   .users td{
-   font-size: 16px;
+   font-size: 15px;
+   width: 20%;
   }
   .users th {
     background-color: #f2f2f2;

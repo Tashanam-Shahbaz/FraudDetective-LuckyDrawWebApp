@@ -57,6 +57,7 @@ body{
     background-color: #ffffff;
     
 }
+
 /* Navbar is starting from here! */
 nav{
     display: flex;
@@ -102,6 +103,7 @@ a::before{
 }
 
 
+s
 /* Navbar is ending from here! */
 
 /* Hero section is starting from here! */
@@ -559,15 +561,9 @@ footer p{
 
     /* Hero section is starting from here! */
 
-    .hero-sec{
-        height: 100vh;
-        flex-direction: column;
-        align-items: left;
-        padding: auto;
-    }
     .hero-img{
-        width: 400px;
-        height: 250px;
+        width: 1200px;
+        height: 11250px;
         background-image: url("../images/lucky_pin.png");
         background-size: cover;
     }
@@ -722,13 +718,16 @@ footer p{
     .admin-profile h3 {
         font-size: 16px;
       }
-      .admin-img {
-        height: 35px;
-        width: 35px;
-        margin-left: 10px;
-        border: 3px solid white;
-      }
-    
+
+.admin-img {
+  height: 35px;
+  width: 35px;
+  margin-left: 15px;
+  border: 4px solid white;
+  cursor: pointer;
+  background-size: cover;
+}
+
       /* Navbar is ending from here! */
     
       /* User data (for admin) is starting from here! */
@@ -760,7 +759,9 @@ footer p{
         margin-top: 8px;
         text-align: center;
       }
-
+.admin_table_view tbody tr td{
+  font-size: 2px !important;
+}
       /* adding user section is starting from here! */
 
   .add-user-page {
@@ -879,7 +880,7 @@ footer p{
   .banner {
     width: 100%;
     height: 240px;
-    background-image: url(/images/admin-banner.png);
+    background-image: url("../images/admin-banner.png");
     background-size: cover;
     background-position: center;
   }
@@ -924,16 +925,20 @@ footer p{
     background-color: #14a37fba;
   }
   .users table {
-    width: 100%;
+    width: 90%;
+    margin-left: 2vw;
     border-collapse: collapse;
     margin-top: 20px;
     border: 2px solid #14a37f;
   }
   .users th,
   .users td {
-    padding: 12px;
+    padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+  }
+  .users td{
+   font-size: 16px;
   }
   .users th {
     background-color: #f2f2f2;
@@ -1052,5 +1057,9 @@ footer p{
   border-radius: 4px;
   padding: 8px 15px;
   margin-bottom: 8px;
+}
+
+body a:hover {
+  color: #ffffff !important;
 }
 

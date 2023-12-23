@@ -803,16 +803,7 @@ footer p{
   .admin-profile h3 {
     color: white;
   }
-  .admin-img {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    background-image: url("/images/admin.png");
-    background-size: cover;
-    margin-left: 15px;
-    cursor: pointer;
-    border: 4px solid white;
-  }
+
   .admin-img.active {
     display: block;
   }
@@ -850,6 +841,9 @@ footer p{
     color: white;
     font-weight: 500;
   }
+  .dd-menu ul{
+    padding: 0em !important;
+  }
   .dd-right a:hover {
     color: #dfdfdfee;
   }
@@ -858,21 +852,19 @@ footer p{
     list-style-type: none;
   }
   .dd-left {
-    height: 100%;
-    padding: 15px 20px;
+   
+     padding: 1vw; 
     color: white;
     background-color: #14a37f;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
   }
   .dd-right {
-    padding: 15px 20px;
+    padding: 1vw 0vw 1vw 0vw;
   }
-  .dd-right li {
+  .dd-right li ,.dd-left li {
     margin-bottom: 15px;
-  }
-  .dd-left li {
-    margin-bottom: 15px;
+    margin-top: 15px;
   }
   
   /* Navbar is ending from here! */

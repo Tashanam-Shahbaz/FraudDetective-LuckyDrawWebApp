@@ -18,10 +18,10 @@
     <div class="admin-profile">
       <h3>Admin</h3>
       <div class="admin-menu">
-        <!-- <div class="admin-img" id="adminImg"> -->
+        <div class="admin-img" id="adminImg">
           <img src="../static/images/admin.png"
           style="height: 35px;width: 35px;margin-left: 15px;border: 4px solid white;cursor: pointer;background-size: cover;"/>
-        <!-- </div> -->
+        </div> 
         <div class="dd-menu" id="dd-drop">
           <div class="dd-left">
             <ul>
@@ -34,7 +34,7 @@
             <ul>
               <li><a href="/user_admin">Dashboard</a></li>
               <li><a href="/update_admin">Update Profile</a></li>
-              <li><a href="">Logout</a></li>
+              <li><a href="/signout">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -118,6 +118,28 @@
     <i class="fa-brands fa-x-twitter"></i>
 </div>
 </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var adminImg = document.getElementById("adminImg");
+    var ddMenu = document.querySelector(".dd-menu");
+
+    adminImg.addEventListener("click", function () {
+      ddMenu.classList.toggle("show-dropdown");
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener("click", function (event) {
+      if (
+        !adminImg.contains(event.target) &&
+        !ddMenu.contains(event.target)
+      ) {
+        ddMenu.classList.remove("show-dropdown");
+      }
+    });
+  });
+</script>
+
 {% endif %}
 
 

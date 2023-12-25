@@ -38,9 +38,10 @@ class Deposits(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     deposit_date = models.DateTimeField()
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=100.00)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES,default=STATUS_CHOICES[2][1])
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES,default=STATUS_CHOICES[0][1])
+    comment = models.CharField(max_length=500,default="")
 
     def __str__(self):
-        return f"Deposit ID: {self.deposit_id}, User: {self.user}, Amount: {self.amount}, Status: {self.status}"
+        return f"Deposit ID: {self.deposit_id}, User: {self.user}, Amount: {self.amount}, Status: {self.status},Comment: {self.comment}"
 
 

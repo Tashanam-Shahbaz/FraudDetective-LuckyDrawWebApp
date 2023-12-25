@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<nav>
+<nav class="custom-nav">
     <a id="Logo" href="/user_admin">Lucky Drawer</a>
   </nav>
 
@@ -9,7 +9,7 @@
 
   <!-- adding user is starting from here! -->
   
-  <div class="add-user-parent">
+  <!-- <div class="add-user-parent">
   <div class="add-user-page">
       <h1>Update Profile</h1>
       <form action="">
@@ -18,6 +18,27 @@
           <input type="password" placeholder="Change Password">
       </form>
       <button type="submit" class="add-user-btn">Update</button>
+  </div>
+</div> -->
+
+<div class="reg-parent">
+  <div class="register-page">
+    <h1>Update Profile</h1>
+    <form method="post">
+
+      {% csrf_token %}
+      {% for field in form %}
+      <input type="{{field.field.widget.input_type}}"
+      name="{{field.html_name}}" 
+      value ="{% if field.label == 'Username' %}{{user.username}}{% elif field.label == 'First name' %}{{user.first_name}}{% elif field.label == 'Last name' %}{{user.last_name}}{% elif field.label == 'Email address' %}{{user.email}}{% endif %}"
+      placeholder="{% if field.label == 'Username' %}{{user.username}}{% elif field.label == 'First name' %}{{user.first_name}}{% elif field.label == 'Last name' %}{{user.last_name}}{% elif field.label == 'Password' %}{{'Set New Password'}}{% elif field.label == 'Email address' %}{{user.email}}{% endif %}"/>
+      {% for error in field.errors %}
+      <p style="color: red">{{error}}</p>
+      {% endfor %}
+      {% endfor %}
+
+      <button type="submit" class="add-user-btn">Update</button>
+    </form>
   </div>
 </div>
 

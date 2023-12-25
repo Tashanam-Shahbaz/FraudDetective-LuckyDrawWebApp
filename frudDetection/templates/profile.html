@@ -3,12 +3,75 @@
 {% block title %}Login{% endblock %}
   
 {% block content %}
-   <h2>Welcome!</h2>
    {% if user.is_authenticated %}
-      Hi {{ user.username }}!
-      <a href="/signout" class="btn btn-danger">Logout</a>
-    {% else %}
-      <a href="/signin" class="btn btn-primary"><span class="glyphicon glyphicon-log-in"></span>Login</a> 
-      <a href="/signup" class="btn btn-success">Signup</a>
-    {% endif %}
+
+
+   <nav class="custom-nav">
+    <a id="Logo" href="/user_admin">Lucky Drawer</a>
+    <div class="admin-profile">
+      <h3>{{user.username}}</h3>
+      <div class="admin-menu">
+        <div class="admin-img" id="adminImg">
+          <img src="../static/images/admin.png"
+          style="height: 35px;width: 35px;margin-left: 15px;border: 4px solid white;cursor: pointer;background-size: cover; border-radius: 50%;"/>
+        </div> 
+        <div class="dd-menu" id="dd-drop">
+          <div class="dd-left">
+            <ul>
+              <li><i class="fa-solid fa-layer-group"></i></li>
+              <li><i class="fa-solid fa-user-gear"></i></li>
+              <li><i class="fa-solid fa-right-from-bracket"></i></li>
+            </ul>
+          </div>
+          <div class="dd-right">
+            <ul>
+              <li><a href="/profile">Dashboard</a></li>
+              <li><a href="/deposit">Deposit Fund</a></li>
+              <!-- <li><a href="/update_admin">Update Profile</a></li> -->
+              <li><a href="/signout">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="banner"></div>
+
+   <!-- User data (for admin) is starting from here! -->
+
+
+<footer>
+  <h3>Follow Us On Social Platform</h3>
+  <p>Lorem ipsum dolor sit consectetur adipisicing elit Mollitia distinctio officia necessitatibus accusantium.</p>
+  <div class="icons">
+  <i class="fa-brands fa-facebook-f"></i>
+  <i class="fa-brands fa-instagram"></i>
+  <i class="fa-brands fa-linkedin-in"></i>
+  <i class="fa-brands fa-x-twitter"></i>
+</div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var adminImg = document.getElementById("adminImg");
+    var ddMenu = document.querySelector(".dd-menu");
+
+    adminImg.addEventListener("click", function () {
+      ddMenu.classList.toggle("show-dropdown");
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener("click", function (event) {
+      if (
+        !adminImg.contains(event.target) &&
+        !ddMenu.contains(event.target)
+      ) {
+        ddMenu.classList.remove("show-dropdown");
+      }
+    });
+  });
+</script> 
+   {% endif %}
+   
 {% endblock %}

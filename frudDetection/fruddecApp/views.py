@@ -90,17 +90,18 @@ def deposit(request):
         if request.method == 'POST':
             # Assuming the form field name for amount is 'amount'
             amount = request.POST.get('amount')
-
+            comment = request.POST.get('comment')
+ 
             # Assuming the user is authenticated and you have the user object
             user = request.user  # Retrieve the authenticated user
 
             # Create a new deposit object
-            deposit = Deposits(user=user,deposit_date=datetime.now(), amount=amount, status='2')
+            deposit = Deposits(user=user,deposit_date=datetime.now(), amount=amount, status='1',comment = comment)
             deposit.save()  # Save the deposit object to the database
 
             # Optionally, perform additional actions or redirect to a success page
             # return redirect('success_page')  # Replace 'success_page' with your desired URL name
-
+            return redirect("/profile")
         return render(request, 'deposit.html', {'user': request.user})
     else:
         form = AuthenticationForm()
@@ -164,6 +165,9 @@ def update_user(request, user_id):
 
 def delete_user(request, user_id):
     user = User.objects.get(pk=user_id)
+    # Clear existing messages before adding a new one
+    storage = messages.get_messages(request)
+    storage.used = True
     user.delete()
     messages.success(request, 'User deleted successfully.')
     return redirect('/user_admin')

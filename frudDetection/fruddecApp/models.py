@@ -51,13 +51,14 @@ class DailyWinner(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     winning_date = models.DateTimeField()
     winning_amount = models.DecimalField(max_digits=10, decimal_places=2, default=100.00)
+    monthly_return = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self):
-        return f"Deposit ID: {self.winner_id}, User: {self.user}, Amount: {self.winning_amount}"
+        return f"Deposit ID: {self.winner_id}, User: {self.user}, Amount: {self.winning_amount}, Monthly Return: {self.monthly_return},Date Time: {self.winning_date}"
 
 
-class WinnerDetails(models.Model):
-    winning_detail_id = models.AutoField(primary_key=True)
+class PrizeDistributionDetails(models.Model):
+    prize_distribution_detail_id = models.AutoField(primary_key=True)
     winner = models.OneToOneField(DailyWinner, on_delete=models.CASCADE, related_name='details')
     deduction_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)    
     service_charges = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)

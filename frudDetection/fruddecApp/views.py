@@ -175,15 +175,6 @@ def add_user(request):
         form = CustomUserCreationForm()
         return render(request, 'add_user.html', {'form': form})
 
-# def update_user(request,user_id):
-#     print(user_id)
-#     if request.method == "PUT":
-#         pass
-#     elif request.method == "GET":
-#         print("Inside get")
-#         user = User.objects.get(id=user_id)
-#         return render(request,'edit_user.html',{"users" : user })
-
 
 def update_user(request, user_id):
     user = User.objects.get(id=user_id)

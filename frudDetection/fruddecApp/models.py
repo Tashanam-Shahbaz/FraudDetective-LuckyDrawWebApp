@@ -45,3 +45,14 @@ class Deposits(models.Model):
         return f"Deposit ID: {self.deposit_id}, User: {self.user}, Amount: {self.amount}, Status: {self.status},Comment: {self.comment}"
 
 
+class DailyWinner(models.Model):
+
+    winner_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    winning_date = models.DateTimeField()
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=100.00)
+
+    def __str__(self):
+        return f"Deposit ID: {self.winner_id}, User: {self.user}, Amount: {self.amount}"
+
+

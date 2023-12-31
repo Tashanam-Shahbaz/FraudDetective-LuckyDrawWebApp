@@ -49,6 +49,14 @@
   {% endfor %}
 {% endif %}
 
+<div class="main-option-button-container">
+  <div class="option-button-container">
+    <button tag="0">User Information</button>
+    <button tag="1">Winner Information</button>
+    <button tag="2">Deposit Information</button>
+    <button tag="3">Prize Distribution Detail</button>
+  </div>
+</div>
 
   <!-- User data (for admin) is starting from here! -->
 
@@ -134,8 +142,30 @@ function openModal() {
 function closeModal() {
   modal.style.display = 'none';
 }
+
+if(closeButton!==null){
 // Event listener to close the modal when clicking the close button
 closeButton.addEventListener('click', closeModal);
+}
+
+// sliding button option 
+
+const WIDTH =  25;
+
+var btnContainer = document.querySelector(".option-button-container");
+
+function slideBg(n) {
+  const bgOffset = WIDTH * n;
+  btnContainer.style.setProperty("--bg-offset", `${bgOffset}%`);
+}
+
+// Event listener to get the tag value and pass it to slideBg function
+btnContainer.addEventListener('click', function(event) {
+  if (event.target.tagName === 'BUTTON') {
+    const tagValue = event.target.getAttribute('tag');
+    slideBg(parseInt(tagValue));
+  }
+});
 
   });
 </script>

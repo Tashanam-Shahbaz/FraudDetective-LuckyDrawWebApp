@@ -14,4 +14,5 @@ urlpatterns = [
     path('add_user/',views.add_user,name='add_user'),
     path('update_user/<int:user_id>/', views.update_user, name='update_user'),
     path('delete_user/<int:user_id>/', views.delete_user, name='delete_user'),
+    path('select_winner/',views.select_winner,name='select_winner'),
 ]

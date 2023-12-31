@@ -10,7 +10,7 @@ from .models import Deposits,CustomUserCreationForm,CustomUserEditForm
 from datetime import datetime
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
-
+from frudDetection.prize_management import select_daily_winner
 
 def your_view(request):
     # Your view logic...
@@ -205,3 +205,6 @@ def delete_user(request, user_id):
     messages.success(request, 'User deleted successfully.')
     return redirect('/user_admin')
     
+def select_winner(request):
+    select_daily_winner()
+    return redirect("/user_admin")

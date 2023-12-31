@@ -4,7 +4,7 @@
 <!-- Register is starting from here! -->
     <!-- Navbar is starting from here! -->
 
-    <nav>
+    <nav class="custom-nav">
         <a id="Logo" href="/">Lucky Drawer</a>
         <div class="links" id="navLinks">
           <i class="fa-solid fa-circle-xmark" id="icon1" onclick="hideMenu()"></i>
@@ -14,7 +14,17 @@
       </nav>
   
       <!-- Navbar is ending from here! -->
-
+  <!-- Message -->
+  {% if messages %}
+  {% for msg in messages %}
+      <div class="customizable-modal-2">
+        <div class="modal-content-2">
+          <span class="close-button-2">&times;</span>
+          <p>{{ msg }}</p>
+        </div>
+      </div> 
+  {% endfor %}
+{% endif %}
 
 <div class="reg-parent">
     <div class="register-page">
@@ -22,7 +32,7 @@
         <form method="post" >
     {% csrf_token %}
     {% for field in form %}
-    <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" />
+    <input class="register-page-input" type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" placeholder="{{ field.label }}" />
     {% for error in field.errors %}
         <p style="color: red">{{ error }}</p>
     {% endfor %}
@@ -46,20 +56,39 @@
 </footer>
 
 
-<!-- JAVASCRIPT FOR TOGLE MENU -->
+<!-- JAVASCRIPT FOR TOGGLE MENU -->
 
 <script>
-
+    document.addEventListener("DOMContentLoaded", function () {
     var navLinks = document.getElementById("navLinks");
-
-    function showMenu() {
-        navLinks.style.right = "0px";
-    }
-    function hideMenu() {
-        navLinks.style.right = "-300px";
-    }
-
-</script>
+  
+  function showMenu() {
+      navLinks.style.right = "0px";
+  }
+  function hideMenu() {
+      navLinks.style.right = "-300px";
+  }
+  
+      // Get the modal element
+  var modal = document.querySelector('.customizable-modal-2');
+  
+  // Get the close button element
+  var closeButton = document.querySelector('.close-button-2');
+  
+  // Function to open the modal
+  function openModal() {
+    modal.style.display = 'block';
+  }
+  
+  // Function to close the modal
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+  // Event listener to close the modal when clicking the close button
+  closeButton.addEventListener('click', closeModal);
+  
+    });
+  </script>
 
 
 {% endblock %}

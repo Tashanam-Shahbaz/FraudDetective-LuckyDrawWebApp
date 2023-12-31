@@ -39,6 +39,17 @@
   <div class="banner"></div>
 
    <!-- User data (for admin) is starting from here! -->
+  <!-- Message -->
+  {% if messages %}
+  {% for msg in messages %}
+      <div class="customizable-modal-2">
+        <div class="modal-content-2">
+          <span class="close-button-2">&times;</span>
+          <p>{{ msg }}</p>
+        </div>
+      </div> 
+  {% endfor %}
+{% endif %}
 
 
 <footer>
@@ -70,6 +81,25 @@
         ddMenu.classList.remove("show-dropdown");
       }
     });
+
+    // Get the modal element
+var modal = document.querySelector('.customizable-modal-2');
+
+// Get the close button element
+var closeButton = document.querySelector('.close-button-2');
+
+// Function to open the modal
+function openModal() {
+  modal.style.display = 'block';
+}
+
+// Function to close the modal
+function closeModal() {
+  modal.style.display = 'none';
+}
+// Event listener to close the modal when clicking the close button
+closeButton.addEventListener('click', closeModal);
+
   });
 </script> 
    {% endif %}

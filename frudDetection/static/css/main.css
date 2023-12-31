@@ -295,13 +295,13 @@ background-color: #004a359d;
     font-weight: bold;
 }
 
-.register-page input{
+.register-page-input{
     height: 5%;
-    width: 82%;
+    width: 95%;
     border: none;
     outline: none;
     margin: 5px 0;
-    padding: 11px;
+    padding: 10px;
     background: #f0f0f0;
     font-size: 12px;
     border-radius: 8px;
@@ -1171,7 +1171,7 @@ input[type="submit"] {
 }
 
 /* Default styles for the modal */
-.customizable-modal {
+.customizable-modal-2 {
   display: block;
   position: fixed;
   z-index: 9999;
@@ -1182,7 +1182,7 @@ input[type="submit"] {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.modal-content-2 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1194,7 +1194,7 @@ input[type="submit"] {
   width: 30% !important;
 }
 
-.close-button {
+.close-button-2 {
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -1202,8 +1202,8 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-.close-button:hover,
-.close-button:focus {
+.close-button-2:hover,
+.close-button-2:focus {
   color: #000;
   text-decoration: none;
 }

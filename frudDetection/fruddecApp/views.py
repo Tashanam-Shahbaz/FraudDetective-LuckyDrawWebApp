@@ -38,11 +38,24 @@ def signin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+
+            # Clear existing messages before adding a new one
+            storage = messages.get_messages(request)
+            storage.used = True
+            messages.success(request, 'Login successfully!')
+
             if user.is_superuser:
                 return redirect("/user_admin") 
             else :
                 return redirect("/profile")    
         else:
+
+            # Clear existing messages before adding a new one
+            storage = messages.get_messages(request)
+            storage.used = True
+            messages.success(request, "Unable to log in. Please re-enter all your credentials.")
+
+
             form = AuthenticationForm(request.POST)
             return render(request, 'login.html', {'form': form})
     else:
@@ -53,19 +66,31 @@ def signin(request):
 def signup(request):
    
     if request.user.is_authenticated:
-        return redirect('/')
+
+        # Clear existing messages before adding a new one
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.success(request, 'Already Registered.')
+
+        return redirect('/profile')
 
     if request.method == 'POST':
         
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            print("Inside valid")
+            # print("Inside valid")
             form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('/')
+
+            # Clear existing messages before adding a new one
+            storage = messages.get_messages(request)
+            storage.used = True
+            messages.success(request, 'Register successfully.')
+
+            return redirect('/profile')
         else:
             return render(request, 'signup.html', {'form': form})
     else:
@@ -99,12 +124,24 @@ def deposit(request):
             deposit = Deposits(user=user,deposit_date=datetime.now(), amount=amount, status='1',comment = comment)
             deposit.save()  # Save the deposit object to the database
 
+             # Clear existing messages before adding a new one
+            storage = messages.get_messages(request)
+            storage.used = True
+            messages.success(request,"Your deposit has been successfully submitted.")
+            
+
             # Optionally, perform additional actions or redirect to a success page
             # return redirect('success_page')  # Replace 'success_page' with your desired URL name
             return redirect("/profile")
         return render(request, 'deposit.html', {'user': request.user})
     else:
         form = AuthenticationForm()
+
+        # Clear existing messages before adding a new one
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.success(request,"Oops! We encountered errors while processing your deposit. To ensure a successful transaction, please log in again and re-submit your deposit. Thank you for your understanding")
+
         return render(request, 'login.html', {'form': form})
 
 

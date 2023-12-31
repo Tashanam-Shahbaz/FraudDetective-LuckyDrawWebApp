@@ -3,7 +3,32 @@
 {% block content %}
 <nav class="custom-nav">
     <a id="Logo" href="/user_admin">Lucky Drawer</a>
-</nav>
+    <div class="admin-profile">
+      <h3>Admin</h3>
+      <div class="admin-menu">
+        <div class="admin-img" id="adminImg">
+          <img src="../static/images/admin.png"
+          style="height: 35px;width: 35px;margin-left: 15px;border: 4px solid white;cursor: pointer;background-size: cover; border-radius: 50%;"/>
+        </div> 
+        <div class="dd-menu" id="dd-drop">
+          <div class="dd-left">
+            <ul>
+              <li><i class="fa-solid fa-layer-group"></i></li>
+              <li><i class="fa-solid fa-user-gear"></i></li>
+              <li><i class="fa-solid fa-right-from-bracket"></i></li>
+            </ul>
+          </div>
+          <div class="dd-right">
+            <ul>
+              <li><a href="/user_admin">Dashboard</a></li>
+              <li><a href="/update_admin">Update Profile</a></li>
+              <li><a href="/signout">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
 <!-- Navbar is ending from here! -->
 
@@ -14,7 +39,7 @@
         <form method="post">
             {% csrf_token %}
             {% for field in form %}
-            <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}"
+            <input class="register-page-input" type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}"
                 placeholder="{{ field.label }}" />
             {% for error in field.errors %}
             <p style="color: red">{{ error }}</p>
@@ -42,4 +67,45 @@
         <i style="color: white;" class="fa-brands fa-x-twitter"></i>
     </div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var adminImg = document.getElementById("adminImg");
+      var ddMenu = document.querySelector(".dd-menu");
+  
+      adminImg.addEventListener("click", function () {
+        ddMenu.classList.toggle("show-dropdown");
+      });
+  
+      // Close dropdown if clicked outside
+      document.addEventListener("click", function (event) {
+        if (
+          !adminImg.contains(event.target) &&
+          !ddMenu.contains(event.target)
+        ) {
+          ddMenu.classList.remove("show-dropdown");
+        }
+      });
+  
+      // Get the modal element
+  var modal = document.querySelector('.customizable-modal-2');
+  
+  // Get the close button element
+  var closeButton = document.querySelector('.close-button-2');
+  
+  // Function to open the modal
+  function openModal() {
+    modal.style.display = 'block';
+  }
+  
+  // Function to close the modal
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+  // Event listener to close the modal when clicking the close button
+  closeButton.addEventListener('click', closeModal);
+  
+    });
+  </script>
+
 {% endblock %}

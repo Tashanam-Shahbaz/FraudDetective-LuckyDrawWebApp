@@ -2,6 +2,7 @@
 
 {% block content %}
 
+
 <nav class="custom-nav">
   <a id="Logo" href="/">Lucky Drawer</a>
   <div class="links" id="navLinks">
@@ -10,6 +11,19 @@
   </div>
   <i class="fa2 fa-solid fa-bars" id="icon2" onclick="showMenu()"></i>
 </nav>
+
+  <!-- Message -->
+  {% if messages %}
+  {% for msg in messages %}
+      <div class="customizable-modal-2">
+        <div class="modal-content-2">
+          <span class="close-button-2">&times;</span>
+          <p>{{ msg }}</p>
+        </div>
+      </div> 
+  {% endfor %}
+{% endif %}
+
 
 <form method="post">
 
@@ -53,16 +67,34 @@
 
 
 <script>
-
+  document.addEventListener("DOMContentLoaded", function () {
   var navLinks = document.getElementById("navLinks");
 
-  function showMenu() {
-      navLinks.style.right = "0px";
-  }
-  function hideMenu() {
-      navLinks.style.right = "-300px";
-  }
+function showMenu() {
+    navLinks.style.right = "0px";
+}
+function hideMenu() {
+    navLinks.style.right = "-300px";
+}
 
+    // Get the modal element
+var modal = document.querySelector('.customizable-modal-2');
+
+// Get the close button element
+var closeButton = document.querySelector('.close-button-2');
+
+// Function to open the modal
+function openModal() {
+  modal.style.display = 'block';
+}
+
+// Function to close the modal
+function closeModal() {
+  modal.style.display = 'none';
+}
+// Event listener to close the modal when clicking the close button
+closeButton.addEventListener('click', closeModal);
+
+  });
 </script>
-
 {% endblock %}

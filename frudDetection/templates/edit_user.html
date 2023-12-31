@@ -9,7 +9,8 @@
     <h3>Admin</h3>
     <div class="admin-menu">
       <div class="admin-img" id="adminImg">
-        <img src="/frudDetection/static/images/admin.png" style="height: 35px;width: 35px;margin-left: 15px;border: 4px solid white;cursor: pointer;background-size: cover;"/>
+        <img src="../static/images/admin.png"
+        style="height: 35px;width: 35px;margin-left: 15px;border: 4px solid white;cursor: pointer;background-size: cover; border-radius: 50%;"/>
       </div> 
       <div class="dd-menu" id="dd-drop">
         <div class="dd-left">
@@ -31,7 +32,6 @@
   </div>
 </nav>
 
-
 <!-- adding user is starting from here! -->
 <div class="reg-parent">
   <div class="register-page">
@@ -40,7 +40,7 @@
 
       {% csrf_token %}
       {% for field in form %}
-      <input type="{{field.field.widget.input_type}}"
+      <input class ="register-page-input" type="{{field.field.widget.input_type}}"
       name="{{field.html_name}}" 
       value ="{% if field.label == 'Username' %}{{user.username}}{% elif field.label == 'First name' %}{{user.first_name}}{% elif field.label == 'Last name' %}{{user.last_name}}{% elif field.label == 'Email address' %}{{user.email}}{% endif %}"
       placeholder="{% if field.label == 'Username' %}{{user.username}}{% elif field.label == 'First name' %}{{user.first_name}}{% elif field.label == 'Last name' %}{{user.last_name}}{% elif field.label == 'Password' %}{{'Set New Password'}}{% elif field.label == 'Email address' %}{{user.email}}{% endif %}"/>

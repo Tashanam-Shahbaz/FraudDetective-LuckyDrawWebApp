@@ -50,9 +50,18 @@ class DailyWinner(models.Model):
     winner_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     winning_date = models.DateTimeField()
-    amount = models.DecimalField(max_digits=10, decimal_places=2, default=100.00)
+    winning_amount = models.DecimalField(max_digits=10, decimal_places=2, default=100.00)
 
     def __str__(self):
-        return f"Deposit ID: {self.winner_id}, User: {self.user}, Amount: {self.amount}"
+        return f"Deposit ID: {self.winner_id}, User: {self.user}, Amount: {self.winning_amount}"
 
 
+class WinnerDetails(models.Model):
+    winning_detail_id = models.AutoField(primary_key=True)
+    winner = models.OneToOneField(DailyWinner, on_delete=models.CASCADE, related_name='details')
+    deduction_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)    
+    service_charges = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    welfare_fund_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return f"Winner: {self.winner.user}, Deduction: {self.deduction_amount}, Welfare Fund: {self.welfare_fund_amount},Services Charges: {self.service_charges}"

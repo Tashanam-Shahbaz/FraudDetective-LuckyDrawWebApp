@@ -194,6 +194,11 @@ def update_user(request, user_id):
         print(form.is_valid())
         if form.is_valid():
             form.save()
+
+            # Clear existing messages before adding a new one
+            storage = messages.get_messages(request)
+            storage.used = True
+            messages.success(request, 'User updated successfully')
             return redirect('/user_admin')
     else:
         form = CustomUserEditForm()

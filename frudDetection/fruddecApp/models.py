@@ -54,7 +54,7 @@ class DailyWinner(models.Model):
     monthly_return = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self):
-        return f"Deposit ID: {self.winner_id}, User: {self.user}, Amount: {self.winning_amount}, Monthly Return: {self.monthly_return},Date Time: {self.winning_date}"
+        return f"Winner ID: {self.winner_id}, User: {self.user}, Amount: {self.winning_amount}, Monthly Return: {self.monthly_return},Date Time: {self.winning_date}"
 
 
 class PrizeDistributionDetails(models.Model):

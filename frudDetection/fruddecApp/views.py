@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 from django.shortcuts import HttpResponseRedirect
 from django import forms
 from django.contrib.auth.models import User
-from .models import Deposits,CustomUserCreationForm,CustomUserEditForm
+from .models import Deposits,CustomUserCreationForm,CustomUserEditForm,DailyWinner
 from datetime import datetime
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
@@ -149,7 +149,9 @@ def user_admin(request):
     if request.user.is_authenticated and request.user.is_superuser:
        # Retrieve all records from the table
         users = User.objects.filter(is_superuser='False')
-        return render(request, 'admin.html',{'users': users})
+        winners = DailyWinner.objects.all()
+        deposits = Deposits.objects.all()
+        return render(request, 'admin.html',{'users': users,'winners':winners,'deposits':deposits})
     else:
         return redirect('/')
 

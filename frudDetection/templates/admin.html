@@ -60,8 +60,8 @@
 
   <!-- User data (for admin) is starting from here! -->
 
-  <main>
-    <div class="user-data-admin">
+  <div class="main-body">
+    <div class="user-data-admin" id ="box-0" style="display: none;">
     <div class="user-content" style="margin-left:2%;">
       <h2 style="font-weight: bold;">Users Information</h2>
       <a href="/add_user">Add Users</a>
@@ -95,7 +95,77 @@
 
     </div>
   </div>
-  </main>
+
+
+  <div class="user-data-admin" id="box-1" style="display: none;">
+    <div class="user-content" style="margin-left:2%;">
+      <h2 style="font-weight: bold;">Winner Information</h2>
+    </div>
+    <div class="winners">
+<table >
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Winning Date</th>
+      <th>Winning Amount</th>
+      <th>Monthly Return</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for winner in winners %}
+    <tr>
+      <td>{{winner.user.first_name}}</td>
+      <td>{{winner.user.last_name}}</td>
+      <td>{{winner.user.email}}</td>
+      <td>{{winner.user.address}}</td>
+      <td>{{winner.winning_date}}</td>
+      <td>{{winner.winning_amount}}</td>
+      <td>{{winner.monthly_return}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    </div>
+  </div>
+
+  <div class="user-data-admin" id="box-3" style="display: none;">
+    <div class="user-content" style="margin-left:2%;">
+      <h2 style="font-weight: bold;">Prize Distribution Details </h2>
+    </div>
+    <div class="winners">
+<table >
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for deposit in deposits %}
+    <tr>
+      <td>{{deposit.user.first_name}}</td>
+      <td>{{deposit.user.last_name}}</td>
+      <td>{{deposit.user.email}}</td>
+      <td>{{deposit.deposit_date}}</td>
+      <td>{{deposit.amount}}</td>
+      <td>{{deposit.comment}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    </div>
+  </div>
+
+</div>
 
   <footer>
     <h3>Follow Us On Social Platform</h3>
@@ -164,6 +234,27 @@ btnContainer.addEventListener('click', function(event) {
   if (event.target.tagName === 'BUTTON') {
     const tagValue = event.target.getAttribute('tag');
     slideBg(parseInt(tagValue));
+
+     // Show the box corresponding to the clicked button's data-tag
+     if(tagValue == 0 )
+     {
+      document.getElementById(`box-${tagValue}`).style.display = 'block';
+      document.getElementById("box-1").style.display = 'none';
+      document.getElementById("box-3").style.display = 'none';
+     }
+     else if( tagValue == 1 )
+     {
+      document.getElementById(`box-${tagValue}`).style.display = 'block';
+      document.getElementById("box-0").style.display = 'none';
+      document.getElementById("box-3").style.display = 'none';
+     }
+     else if( tagValue == 3 )
+     {
+      document.getElementById(`box-${tagValue}`).style.display = 'block';
+      document.getElementById("box-1").style.display = 'none';
+      document.getElementById("box-0").style.display = 'none';
+     }
+    
   }
 });
 

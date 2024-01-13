@@ -3,6 +3,7 @@ This repo is to enhance the security of lucky draw websites. While it provides p
 
 <img src="images/frud.jpg" />
 
+
 ## Key Features
 
 - **Sophisticated Fraud Detection Algorithms:** Implementing state-of-the-art algorithms to detect and prevent fraudulent activities within the lucky draw system.

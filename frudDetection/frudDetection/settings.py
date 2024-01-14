@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'frudDetection.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fruddetection',
+        'NAME': 'fruddetectionapp',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',  # Or your MySQL host
@@ -146,4 +146,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GRAPH_MODELS = {
   'all_applications': True,
   'group_models': True,
+  'dot_command': 'E:\\PROJECTS\\FraudDetective-LuckyDrawWebApp\\frudDetection\\my_project.dot',
 }

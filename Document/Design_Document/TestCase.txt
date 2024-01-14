@@ -1,0 +1,61 @@
+TEST CASES:
+
+**Test Case 1: User Account Creation**
+
+* **Objective:** Ensure users can successfully create accounts with accurate personal details.
+* **Steps:**
+   1. Navigate to the registration page.
+   2. Fill in the required user details (name, address, email, phone number).
+   3. Click on the 'Create Account' button.
+* **Expected Result:** User account is created successfully.
+
+**Test Case 2: Admin User Management**
+
+* **Objective:** Confirm that admin functionalities work correctly in creating, editing, and deleting user accounts.
+* **Steps:**
+   1. Log in as an admin.
+   2. Create a new user account.
+   3. Edit the user details.
+   4. Delete the user account.
+* **Expected Result:** User account is created, edited, and deleted successfully.
+
+**Test Case 3: Daily Deposit and Participation**
+
+* **Objective:** Verify that users can deposit 100 PKR per day and are automatically entered into the daily prize draw.
+* **Steps:**
+   1. Log in as a user.
+   2. Deposit 100 PKR.
+   3. Check if the system records the deposit and includes the user in the daily prize draw.
+* **Expected Result:** Deposit is recorded, and the user is entered into the daily prize draw.
+
+**Test Case 4: Daily Winner Selection**
+
+* **Objective:** Confirm that the system randomly selects a winner each day.
+* **Steps:**
+   1. Wait for the daily winner selection process.
+   2. Check if a winner is chosen.
+* **Expected Result:** A winner is randomly selected.
+
+**Test Case 5: Prize Distribution**
+
+* **Objective:** Validate the correct calculation and distribution of the daily prize.
+* **Steps:**
+   1. Check the daily collected amount.
+   2. Verify the system calculates the service charge (5%) and saves for the participant's welfare fund (15%).
+* **Expected Result:** Daily prize is distributed correctly after deducting the service charge and saving for the welfare fund.
+
+**Test Case 6: Monthly Returns**
+
+* **Objective:** Ensure the system provides the winner with the guaranteed monthly return.
+* **Steps:**
+   1. Check the winner's account for the monthly return (1,000 PKR) along with the daily deposit (10 PKR/day).
+* **Expected Result:** Monthly return and daily deposit are credited to the winner's account as specified.
+
+**Test Case 7: Fraud Detection Module Integration**
+
+* **Objective:** Confirm the effectiveness of the fraud detection module using the "Credit Card Fraud Detection" dataset.
+* **Steps:**
+   1. Integrate the "Credit Card Fraud Detection" dataset into the fraud detection module.
+   2. Train the model.
+   3. Verify real-time monitoring and alerting functionality.
+* **Expected Result:** The fraud detection module effectively identifies potential fraudulent activity, and alerts are generated for further investigation.

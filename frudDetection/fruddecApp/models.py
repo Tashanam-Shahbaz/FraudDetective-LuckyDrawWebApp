@@ -66,3 +66,10 @@ class PrizeDistributionDetails(models.Model):
 
     def __str__(self):
         return f"Winner: {self.winner.user}, Deduction: {self.deduction_amount}, Welfare Fund: {self.welfare_fund_amount},Services Charges: {self.service_charges}"
+
+
+class FrudulentActivityDetail(models.Model):
+    frudulent_activity_detail_id = models.AutoField(primary_key=True)
+    date_of_occurance = models.DateTimeField()
+    log = models.CharField(max_length=500,default="")
+    deposit = models.OneToOneField(Deposits, on_delete=models.CASCADE, related_name='frudulentactivity')

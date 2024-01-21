@@ -23,12 +23,12 @@
 
 <div class="reg-parent">
   <div class="register-page">
-    <h1>Update Profile</h1>
+    <h1>Edit Profile</h1>
     <form method="post">
 
       {% csrf_token %}
       {% for field in form %}
-      <input type="{{field.field.widget.input_type}}"
+      <input class ="register-page-input" type="{{field.field.widget.input_type}}"
       name="{{field.html_name}}" 
       value ="{% if field.label == 'Username' %}{{user.username}}{% elif field.label == 'First name' %}{{user.first_name}}{% elif field.label == 'Last name' %}{{user.last_name}}{% elif field.label == 'Email address' %}{{user.email}}{% endif %}"
       placeholder="{% if field.label == 'Username' %}{{user.username}}{% elif field.label == 'First name' %}{{user.first_name}}{% elif field.label == 'Last name' %}{{user.last_name}}{% elif field.label == 'Password' %}{{'Set New Password'}}{% elif field.label == 'Email address' %}{{user.email}}{% endif %}"/>
@@ -37,11 +37,10 @@
       {% endfor %}
       {% endfor %}
 
-      <button type="submit" class="add-user-btn">Update</button>
+      <button type="submit" class="reg-btn">Update</button>
     </form>
   </div>
 </div>
-
   <!-- adding user is ending from here! -->
 
 

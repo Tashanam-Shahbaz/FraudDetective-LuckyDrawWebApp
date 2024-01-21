@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 from django.shortcuts import HttpResponseRedirect
 from django import forms
 from django.contrib.auth.models import User
-from .models import Deposits,CustomUserCreationForm,CustomUserEditForm,DailyWinner
+from .models import Deposits,CustomUserCreationForm,CustomUserEditForm,DailyWinner,PrizeDistributionDetails
 from datetime import datetime
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
@@ -151,15 +151,37 @@ def user_admin(request):
         users = User.objects.filter(is_superuser='False')
         winners = DailyWinner.objects.all()
         deposits = Deposits.objects.all()
-        return render(request, 'admin.html',{'users': users,'winners':winners,'deposits':deposits})
+        pdd = PrizeDistributionDetails.objects.all()
+        return render(request, 'admin.html',{
+            'users': users,'winners':winners,'deposits':deposits,'pdd':pdd})
     else:
         return redirect('/')
 
-def update_admin(request):
-    if request.user.is_authenticated and request.user.is_superuser:
-        return render(request, 'update_admin.html')
+# def update_admin(request):
+#     if request.user.is_authenticated and request.user.is_superuser:
+#         return render(request, 'update_admin.html')
+#     else:
+#         return redirect('/')
+
+def update_admin(request, user_id):
+    user = User.objects.get(id=user_id)
+    
+    if request.method == 'POST':
+        form = CustomUserEditForm(request.POST, instance=user)
+        print(form)
+        print(form.is_valid())
+        if form.is_valid():
+            form.save()
+
+            # Clear existing messages before adding a new one
+            storage = messages.get_messages(request)
+            storage.used = True
+            messages.success(request, 'Admin updated successfully')
+            return redirect('/user_admin')
     else:
-        return redirect('/')
+        form = CustomUserEditForm()
+    
+    return render(request, 'update_admin.html', {'form': form, 'user': user})
 
 
 def add_user(request):

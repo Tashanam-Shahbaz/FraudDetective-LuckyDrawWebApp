@@ -24,7 +24,7 @@
           <div class="dd-right">
             <ul>
               <li><a href="/user_admin">Dashboard</a></li>
-              <li><a href="/update_admin">Update Profile</a></li>
+              <li><a  href="{% url 'update_admin' user.id %}">Update Profile</a></li>
               <li><a href="/signout">Logout</a></li>
             </ul>
           </div>
@@ -61,6 +61,8 @@
   <!-- User data (for admin) is starting from here! -->
 
   <div class="main-body">
+    
+    <!-- Users Information -->
     <div class="user-data-admin" id ="box-0" style="display: none;">
     <div class="user-content" style="margin-left:2%;">
       <h2 style="font-weight: bold;">Users Information</h2>
@@ -95,8 +97,9 @@
 
     </div>
   </div>
+  <!-- Users Information -->
 
-
+  <!-- Winner Information -->
   <div class="user-data-admin" id="box-1" style="display: none;">
     <div class="user-content" style="margin-left:2%;">
       <h2 style="font-weight: bold;">Winner Information</h2>
@@ -131,10 +134,12 @@
 
     </div>
   </div>
+  <!-- Winner Information -->
 
-  <div class="user-data-admin" id="box-3" style="display: none;">
+  <!-- Deposit Details -->
+  <div class="user-data-admin" id="box-2" style="display: none;">
     <div class="user-content" style="margin-left:2%;">
-      <h2 style="font-weight: bold;">Prize Distribution Details </h2>
+      <h2 style="font-weight: bold;">Deposit Details </h2>
     </div>
     <div class="winners">
 <table >
@@ -164,6 +169,36 @@
 
     </div>
   </div>
+<!-- Deposit Details -->
+
+<!-- Prize Distribution Details -->
+  <div class="user-data-admin" id="box-3" style="display: none;">
+    <div class="user-content" style="margin-left:2%;">
+      <h2 style="font-weight: bold;">Prize Distribution Details </h2>
+    </div>
+    <div class="winners">
+<table >
+  <thead>
+    <tr>
+      <th>Deduction Amount</th>
+      <th>Serive Charges</th>
+      <th>Welfare Fund Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for detail in pdd %}
+    <tr>
+      <td>{{detail.deduction_amount}}</td>
+      <td>{{detail.service_charges}}</td>
+      <td>{{detail.welfare_fund_amount}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    </div>
+  </div>
+<!-- Prize Distribution Details -->
 
 </div>
 
@@ -182,6 +217,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     var adminImg = document.getElementById("adminImg");
     var ddMenu = document.querySelector(".dd-menu");
+    document.getElementById(`box-0`).style.display = 'block';
 
     adminImg.addEventListener("click", function () {
       ddMenu.classList.toggle("show-dropdown");
@@ -189,77 +225,61 @@
 
     // Close dropdown if clicked outside
     document.addEventListener("click", function (event) {
-      if (
-        !adminImg.contains(event.target) &&
-        !ddMenu.contains(event.target)
-      ) {
+      if (!adminImg.contains(event.target) && !ddMenu.contains(event.target)) {
         ddMenu.classList.remove("show-dropdown");
       }
     });
 
     // Get the modal element
-var modal = document.querySelector('.customizable-modal-2');
+    var modal = document.querySelector('.customizable-modal-2');
 
-// Get the close button element
-var closeButton = document.querySelector('.close-button-2');
+    // Get the close button element
+    var closeButton = document.querySelector('.close-button-2');
 
-// Function to open the modal
-function openModal() {
-  modal.style.display = 'block';
-}
+    // Function to open the modal
+    function openModal() {
+      modal.style.display = 'block';
+    }
 
-// Function to close the modal
-function closeModal() {
-  modal.style.display = 'none';
-}
+    // Function to close the modal
+    function closeModal() {
+      modal.style.display = 'none';
+    }
 
-if(closeButton!==null){
-// Event listener to close the modal when clicking the close button
-closeButton.addEventListener('click', closeModal);
-}
+    // Event listener to close the modal when clicking the close button
+    if (closeButton !== null) {
+      closeButton.addEventListener('click', closeModal);
+    }
 
-// sliding button option 
+    // Sliding button option
+    const WIDTH = 25;
 
-const WIDTH =  25;
+    var btnContainer = document.querySelector(".option-button-container");
 
-var btnContainer = document.querySelector(".option-button-container");
+    function slideBg(n) {
+      const bgOffset = WIDTH * n;
+      btnContainer.style.setProperty("--bg-offset", `${bgOffset}%`);
+    }
 
-function slideBg(n) {
-  const bgOffset = WIDTH * n;
-  btnContainer.style.setProperty("--bg-offset", `${bgOffset}%`);
-}
+    // Event listener to get the tag value and pass it to slideBg function
+    btnContainer.addEventListener('click', function (event) {
+      if (event.target.tagName === 'BUTTON') {
+        const tagValue = event.target.getAttribute('tag');
+        slideBg(parseInt(tagValue));
 
-// Event listener to get the tag value and pass it to slideBg function
-btnContainer.addEventListener('click', function(event) {
-  if (event.target.tagName === 'BUTTON') {
-    const tagValue = event.target.getAttribute('tag');
-    slideBg(parseInt(tagValue));
+        // Hide all boxes
+        for (let i = 0; i < 4; i++) {
+          document.getElementById(`box-${i}`).style.display = 'none';
+        }
 
-     // Show the box corresponding to the clicked button's data-tag
-     if(tagValue == 0 )
-     {
-      document.getElementById(`box-${tagValue}`).style.display = 'block';
-      document.getElementById("box-1").style.display = 'none';
-      document.getElementById("box-3").style.display = 'none';
-     }
-     else if( tagValue == 1 )
-     {
-      document.getElementById(`box-${tagValue}`).style.display = 'block';
-      document.getElementById("box-0").style.display = 'none';
-      document.getElementById("box-3").style.display = 'none';
-     }
-     else if( tagValue == 3 )
-     {
-      document.getElementById(`box-${tagValue}`).style.display = 'block';
-      document.getElementById("box-1").style.display = 'none';
-      document.getElementById("box-0").style.display = 'none';
-     }
-    
-  }
-});
+        // Show the box corresponding to the clicked button's data-tag
+        document.getElementById(`box-${tagValue}`).style.display = 'block';
+      }
+    });
 
   });
 </script>
+
 
 {% endif %}
 

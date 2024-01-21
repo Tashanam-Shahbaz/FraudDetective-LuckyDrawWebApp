@@ -1293,3 +1293,55 @@ input[type="submit"] {
 .click-change {
   color: white; /* Change text color to white */
 }
+
+
+.main-option-button-container-profile {
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 10vh;
+  font-family: sans-serif;
+ 
+}
+.option-button-container-profile {
+  --bg-offset: 0%;
+  display: flex;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+  background: rgb(224, 224, 224);
+  /* box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07); */
+}
+
+.option-button-container-profile::after {
+  content: "";
+  width: 50%;
+  height: 100%;
+  background:  #14a37f85;
+  position: absolute;
+  top: 0;
+  left: var(--bg-offset);
+  transition: left 0.3s;
+}
+
+.option-button-container-profile > button {
+  width: 150px;
+  border: none;
+  padding: 0.50rem 1rem;
+  background: transparent;
+  cursor: pointer;
+  color: #303030;
+  font-weight: 500;
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+.option-button-container-profile > button:not(:last-of-type) {
+  border-right: 1px solid #eee;
+}

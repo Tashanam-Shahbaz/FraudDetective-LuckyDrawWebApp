@@ -157,12 +157,6 @@ def user_admin(request):
     else:
         return redirect('/')
 
-# def update_admin(request):
-#     if request.user.is_authenticated and request.user.is_superuser:
-#         return render(request, 'update_admin.html')
-#     else:
-#         return redirect('/')
-
 def update_admin(request, user_id):
     user = User.objects.get(id=user_id)
     

@@ -65,42 +65,42 @@
 
   <div class="main-body">
     
-    <!-- Users Information -->
-    <div class="user-data-admin" id ="box-0" style="display: none;">
-    <div class="user-content" style="margin-left:2%;">
-      <h2 style="font-weight: bold;">Users Information</h2>
-      <a href="/add_user">Add Users</a>
-    </div>
-    <div class="users">
+ <!-- Deposit Details -->
+ <div class="user-data-admin" id="box-0" style="display: none;">
+  <div class="user-content" style="margin-left:2%;">
+    <h2 style="font-weight: bold;">My Deposit Detail</h2>
+    
+  </div>
+  <div class="winners">
 <table >
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for user in users %}
-    <tr>
-      <td>{{user.first_name}}</td>
-      <td>{{user.last_name}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.address}}</td>
-      <td>
-        <a class="action" href="{% url 'update_user' user.id %}">Edit</a> 
-        <a class="action" href="{% url 'delete_user' user.id %}">Delete</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Date</th>
+    <th>Amount</th>
+    <th>comment</th>
+  </tr>
+</thead>
+<tbody>
+  {% for deposit in deposits %}
+  <tr>
+    <td>{{deposit.user.first_name}}</td>
+    <td>{{deposit.user.last_name}}</td>
+    <td>{{deposit.user.email}}</td>
+    <td>{{deposit.deposit_date}}</td>
+    <td>{{deposit.amount}}</td>
+    <td>{{deposit.comment}}</td>
+  </tr>
+  {% endfor %}
+</tbody>
 </table>
 
-    </div>
   </div>
-  <!-- Users Information -->
+</div>
+<!-- Deposit Details -->
+
 
   <!-- Winner Information -->
   <div class="user-data-admin" id="box-1" style="display: none;">
@@ -138,70 +138,6 @@
     </div>
   </div>
   <!-- Winner Information -->
-
-  <!-- Deposit Details -->
-  <div class="user-data-admin" id="box-2" style="display: none;">
-    <div class="user-content" style="margin-left:2%;">
-      <h2 style="font-weight: bold;">Deposit Details </h2>
-    </div>
-    <div class="winners">
-<table >
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Date</th>
-      <th>Amount</th>
-      <th>comment</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for deposit in deposits %}
-    <tr>
-      <td>{{deposit.user.first_name}}</td>
-      <td>{{deposit.user.last_name}}</td>
-      <td>{{deposit.user.email}}</td>
-      <td>{{deposit.deposit_date}}</td>
-      <td>{{deposit.amount}}</td>
-      <td>{{deposit.comment}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-    </div>
-  </div>
-<!-- Deposit Details -->
-
-<!-- Prize Distribution Details -->
-  <div class="user-data-admin" id="box-3" style="display: none;">
-    <div class="user-content" style="margin-left:2%;">
-      <h2 style="font-weight: bold;">Prize Distribution Details </h2>
-    </div>
-    <div class="winners">
-<table >
-  <thead>
-    <tr>
-      <th>Deduction Amount</th>
-      <th>Serive Charges</th>
-      <th>Welfare Fund Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for detail in pdd %}
-    <tr>
-      <td>{{detail.deduction_amount}}</td>
-      <td>{{detail.service_charges}}</td>
-      <td>{{detail.welfare_fund_amount}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-    </div>
-  </div>
-<!-- Prize Distribution Details -->
 
 </div>
 

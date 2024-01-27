@@ -10,7 +10,12 @@ from .models import Deposits,CustomUserCreationForm,CustomUserEditForm,DailyWinn
 from datetime import datetime
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
-from frudDetection.prize_management import select_daily_winner,credit_monthly_return
+from fruddecApp.prize_management import select_daily_winner,credit_monthly_return
+
+# function run when the program start
+
+select_daily_winner()
+credit_monthly_return()
 
 def your_view(request):
     # Your view logic...
@@ -99,8 +104,16 @@ def signup(request):
    
 
   
-def profile(request): 
-    return render(request, 'profile.html')
+def profile(request):
+    if request.user.is_authenticated:
+        user = request.user
+        deposits = Deposits.objects.filter(user=user)
+        winners = DailyWinner.objects.all()
+
+        return render(request, 'profile.html', {'deposits': deposits,'winners':winners})
+    else:
+        # Handle the case when the user is not authenticated
+        return render(request, 'profile.html', {'deposits': None})
    
 def signout(request):
     logout(request)

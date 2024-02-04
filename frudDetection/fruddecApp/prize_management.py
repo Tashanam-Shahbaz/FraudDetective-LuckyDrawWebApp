@@ -9,17 +9,18 @@ from fruddecApp.models import Deposits, DailyWinner, PrizeDistributionDetails , 
 
 def select_daily_winner():
     print("select_daily_winner")
-    current_date = timezone.now().date()
-    last_with_draw_datetime = DailyWinner.objects.latest("winning_date").winning_date
-
+    current_date ,current_datetime, = datetime.now().date(),datetime.now()
+    last_with_draw_date = (DailyWinner.objects.latest("winning_date").winning_date).date()
+    if(last_with_draw_date >= current_date):
+        return 
+    
     # Ensure last_with_draw_datetime is not None
-    last_with_draw_date = last_with_draw_datetime.date() if last_with_draw_datetime else current_date
+    last_with_draw_date = last_with_draw_date if last_with_draw_date else current_date
     date_range_list = [last_with_draw_date + timedelta(days=x) for x in range((current_date - last_with_draw_date).days + 1)]
 
 
     for lucky_drawer_date in date_range_list:
-        depositors = Deposits.objects.filter(deposit_date__date=lucky_drawer_date)
-        
+        depositors = Deposits.objects.filter(deposit_date__date=lucky_drawer_date, status = 1)
         if depositors.exists():
             daily_collected_amount = depositors.aggregate(total_amount=Sum('amount'))['total_amount'] or 0
             
@@ -35,7 +36,7 @@ def select_daily_winner():
             # Create and save DailyWinner instance
             database_winner = DailyWinner.objects.create(
                 user=winner.user,
-                winning_date=current_date,
+                winning_date=current_datetime,
                 winning_amount=prize_amount,
             )
             
@@ -87,7 +88,6 @@ def detect_fraudulent_activity(user, input_value, comment):
 
         FrudulentActivityDetail.objects.create(
             deposit=deposit,
-            date_of_occurance=datetime.now(),
             log="Fraud Activity Detected"
         )
         return False

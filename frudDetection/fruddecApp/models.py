@@ -70,6 +70,8 @@ class PrizeDistributionDetails(models.Model):
 
 class FrudulentActivityDetail(models.Model):
     frudulent_activity_detail_id = models.AutoField(primary_key=True)
-    date_of_occurance = models.DateTimeField()
     log = models.CharField(max_length=500,default="")
     deposit = models.OneToOneField(Deposits, on_delete=models.CASCADE, related_name='frudulentactivity')
+
+    def __str__(self):
+        return f"id : {self.frudulent_activity_detail_id}, log: {self.log}  , depositid ; {self.deposit.deposit_id}"

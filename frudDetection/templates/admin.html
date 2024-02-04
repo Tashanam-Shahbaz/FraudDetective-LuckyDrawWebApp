@@ -2,51 +2,51 @@
 
 {% block content %}
 
-  <!-- Navbar is starting from here! -->
-  {% if user.is_authenticated and user.is_superuser %}
-  <nav class="custom-nav">
-    <a id="Logo" href="/user_admin">Lucky Drawer</a>
-    <div class="admin-profile">
-      <h3>Admin</h3>
-      <div class="admin-menu">
-        <div class="admin-img" id="adminImg">
-          <img src="../static/images/admin.png"
-          style="height: 35px;width: 35px;margin-left: 15px;border: 4px solid white;cursor: pointer;background-size: cover; border-radius: 50%;"/>
-        </div> 
-        <div class="dd-menu" id="dd-drop">
-          <div class="dd-left">
-            <ul>
-              <li><i class="fa-solid fa-layer-group"></i></li>
-              <li><i class="fa-solid fa-user-gear"></i></li>
-              <li><i class="fa-solid fa-right-from-bracket"></i></li>
-            </ul>
-          </div>
-          <div class="dd-right">
-            <ul>
-              <li><a href="/user_admin">Dashboard</a></li>
-              <li><a  href="{% url 'update_admin' user.id %}">Update Profile</a></li>
-              <li><a href="/signout">Logout</a></li>
-            </ul>
-          </div>
+<!-- Navbar is starting from here! -->
+{% if user.is_authenticated and user.is_superuser %}
+<nav class="custom-nav">
+  <a id="Logo" href="/user_admin">Lucky Drawer</a>
+  <div class="admin-profile">
+    <h3>Admin</h3>
+    <div class="admin-menu">
+      <div class="admin-img" id="adminImg">
+        <img src="../static/images/admin.png"
+          style="height: 35px;width: 35px;margin-left: 15px;border: 4px solid white;cursor: pointer;background-size: cover; border-radius: 50%;" />
+      </div>
+      <div class="dd-menu" id="dd-drop">
+        <div class="dd-left">
+          <ul>
+            <li><i class="fa-solid fa-layer-group"></i></li>
+            <li><i class="fa-solid fa-user-gear"></i></li>
+            <li><i class="fa-solid fa-right-from-bracket"></i></li>
+          </ul>
+        </div>
+        <div class="dd-right">
+          <ul>
+            <li><a href="/user_admin">Dashboard</a></li>
+            <li><a href="{% url 'update_admin' user.id %}">Update Profile</a></li>
+            <li><a href="/signout">Logout</a></li>
+          </ul>
         </div>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Navbar is starting from here! -->
+<!-- Navbar is starting from here! -->
 
-  <div class="banner"></div>
+<div class="banner"></div>
 
-  <!-- Message -->
-  {% if messages %}
-  {% for msg in messages %}
-      <div class="customizable-modal-2">
-        <div class="modal-content-2">
-          <span class="close-button-2">&times;</span>
-          <p>{{ msg }}</p>
-        </div>
-      </div> 
-  {% endfor %}
+<!-- Message -->
+{% if messages %}
+{% for msg in messages %}
+<div class="customizable-modal-2">
+  <div class="modal-content-2">
+    <span class="close-button-2">&times;</span>
+    <p>{{ msg }}</p>
+  </div>
+</div>
+{% endfor %}
 {% endif %}
 
 <div class="main-option-button-container">
@@ -55,45 +55,48 @@
     <button tag="1">Winner Information</button>
     <button tag="2">Deposit Information</button>
     <button tag="3">Prize Distribution Detail</button>
+    <button tag="4">Frudulent Activity Detail</button>
   </div>
 </div>
 
-  <!-- User data (for admin) is starting from here! -->
+<!-- User data (for admin) is starting from here! -->
 
-  <div class="main-body">
-    
-    <!-- Users Information -->
-    <div class="user-data-admin" id ="box-0" style="display: none;">
+<div class="main-body">
+
+  <!-- Users Information -->
+  <div class="user-data-admin" id="box-0" style="display: none;">
     <div class="user-content" style="margin-left:2%;">
       <h2 style="font-weight: bold;">Users Information</h2>
       <a href="/add_user">Add Users</a>
     </div>
-    <div class="users">
-<table >
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for user in users %}
-    <tr>
-      <td>{{user.first_name}}</td>
-      <td>{{user.last_name}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.address}}</td>
-      <td>
-        <a class="action" href="{% url 'update_user' user.id %}">Edit</a> 
-        <a class="action" href="{% url 'delete_user' user.id %}">Delete</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    <div class="winners">
+      <table>
+        <thead>
+          <tr>
+            <th>S No.</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.address}}</td>
+            <td>
+              <a class="action" href="{% url 'update_user' user.id %}">Edit</a>
+              <a class="action" href="{% url 'delete_user' user.id %}">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 
     </div>
   </div>
@@ -105,32 +108,34 @@
       <h2 style="font-weight: bold;">Winner Information</h2>
     </div>
     <div class="winners">
-<table >
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Winning Date</th>
-      <th>Winning Amount</th>
-      <th>Monthly Return</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for winner in winners %}
-    <tr>
-      <td>{{winner.user.first_name}}</td>
-      <td>{{winner.user.last_name}}</td>
-      <td>{{winner.user.email}}</td>
-      <td>{{winner.user.address}}</td>
-      <td>{{winner.winning_date}}</td>
-      <td>{{winner.winning_amount}}</td>
-      <td>{{winner.monthly_return}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+      <table>
+        <thead>
+          <tr>
+            <th>S No.</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Winning Date</th>
+            <th>Winning Amount</th>
+            <th>Monthly Return</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for winner in winners %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{winner.user.first_name}}</td>
+            <td>{{winner.user.last_name}}</td>
+            <td>{{winner.user.email}}</td>
+            <td>{{winner.user.address}}</td>
+            <td>{{winner.winning_date}}</td>
+            <td>{{winner.winning_amount}}</td>
+            <td>{{winner.monthly_return}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 
     </div>
   </div>
@@ -142,75 +147,126 @@
       <h2 style="font-weight: bold;">Deposit Details </h2>
     </div>
     <div class="winners">
-<table >
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Date</th>
-      <th>Amount</th>
-      <th>comment</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for deposit in deposits %}
-    <tr>
-      <td>{{deposit.user.first_name}}</td>
-      <td>{{deposit.user.last_name}}</td>
-      <td>{{deposit.user.email}}</td>
-      <td>{{deposit.deposit_date}}</td>
-      <td>{{deposit.amount}}</td>
-      <td>{{deposit.comment}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+      <table>
+        <thead>
+          <tr>
+            <th>S No.</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Deposit Status</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for deposit in deposits %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{deposit.user.first_name}}</td>
+            <td>{{deposit.user.last_name}}</td>
+            <td>{{deposit.user.email}}</td>
+            {% if deposit.status == '1' %}
+            <td>Successful</td>
+            {% elif deposit.status == '2' %}
+            <td>Pending</td>
+            {% elif deposit.status == '3' %}
+            <td>Failed</td>
+            {% endif %}
+            <td>{{deposit.deposit_date}}</td>
+            <td>{{deposit.amount}}</td>
+            <td>{{deposit.comment}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 
     </div>
   </div>
-<!-- Deposit Details -->
+  <!-- Deposit Details -->
 
-<!-- Prize Distribution Details -->
+  <!-- Prize Distribution Details -->
   <div class="user-data-admin" id="box-3" style="display: none;">
     <div class="user-content" style="margin-left:2%;">
       <h2 style="font-weight: bold;">Prize Distribution Details </h2>
     </div>
     <div class="winners">
-<table >
-  <thead>
-    <tr>
-      <th>Deduction Amount</th>
-      <th>Serive Charges</th>
-      <th>Welfare Fund Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for detail in pdd %}
-    <tr>
-      <td>{{detail.deduction_amount}}</td>
-      <td>{{detail.service_charges}}</td>
-      <td>{{detail.welfare_fund_amount}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+      <table>
+        <thead>
+          <tr>
+            <th>S No.</th>
+            <th>Deduction Amount</th>
+            <th>Serive Charges</th>
+            <th>Welfare Fund Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for detail in pdd %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{detail.deduction_amount}}</td>
+            <td>{{detail.service_charges}}</td>
+            <td>{{detail.welfare_fund_amount}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 
     </div>
   </div>
-<!-- Prize Distribution Details -->
+  <!-- Prize Distribution Details -->
+
+  <!-- Frudulent Activity Detection -->
+  <div class="user-data-admin" id="box-4" style="display: none;">
+    <div class="user-content" style="margin-left:2%;">
+      <h2 style="font-weight: bold;">Frudulent Activity Detail</h2>
+    </div>
+    <div class="winners">
+      <table>
+        <thead>
+          <tr>
+            <th>S No.</th>
+            <th>User Name</th>
+            <th>Deposit Status</th>
+            <th>Date</th>
+            <th>log</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fd in frudDetectionDetail %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{fd.deposit.user.username}}</td>
+            {% if fd.deposit.status == '1' %}
+            <td>Successful</td>
+            {% elif fd.deposit.status == '2' %}
+            <td>Pending</td>
+            {% elif fd.deposit.status == '3' %}
+            <td>Failed</td>
+            {% endif %}
+            <td>{{fd.deposit.deposit_date}}</td> <!-- Date and time of frud happen -->
+            <td>{{fd.log}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <!-- Frudulent Activity Detection -->
 
 </div>
 
-  <footer>
-    <h3>Follow Us On Social Platform</h3>
-    <p>Lorem ipsum dolor sit consectetur adipisicing elit Mollitia distinctio officia necessitatibus accusantium.</p>
-    <div class="icons">
+<footer>
+  <h3>Follow Us On Social Platform</h3>
+  <p>Lorem ipsum dolor sit consectetur adipisicing elit Mollitia distinctio officia necessitatibus accusantium.</p>
+  <div class="icons">
     <i class="fa-brands fa-facebook-f"></i>
     <i class="fa-brands fa-instagram"></i>
     <i class="fa-brands fa-linkedin-in"></i>
     <i class="fa-brands fa-x-twitter"></i>
-</div>
+  </div>
 </footer>
 
 <script>
@@ -252,7 +308,7 @@
     }
 
     // Sliding button option
-    const WIDTH = 25;
+    const WIDTH = 20;
 
     var btnContainer = document.querySelector(".option-button-container");
 
@@ -268,7 +324,7 @@
         slideBg(parseInt(tagValue));
 
         // Hide all boxes
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 5; i++) {
           document.getElementById(`box-${i}`).style.display = 'none';
         }
 

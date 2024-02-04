@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login ,logout
 from fruddecApp.prize_management import select_daily_winner,credit_monthly_return,detect_fraudulent_activity
-from .models import Deposits,CustomUserCreationForm,CustomUserEditForm,DailyWinner,PrizeDistributionDetails
+from .models import Deposits,CustomUserCreationForm,CustomUserEditForm,DailyWinner,PrizeDistributionDetails,FrudulentActivityDetail
 
 
 
@@ -149,12 +149,18 @@ def deposit(request):
 def user_admin(request):
     if request.user.is_authenticated and request.user.is_superuser:
        # Retrieve all records from the table
-        users = User.objects.filter(is_superuser='False')
+        users = User.objects.filter(is_superuser=False)
         winners = DailyWinner.objects.all()
-        deposits = Deposits.objects.all()
+        frudDetectionDetail = FrudulentActivityDetail.objects.all()
+        frud_deposit_id = frudDetectionDetail.values_list('deposit_id', flat=True)
+        deposits = Deposits.objects.exclude(deposit_id__in=frud_deposit_id)
         pdd = PrizeDistributionDetails.objects.all()
         return render(request, 'admin.html',{
-            'users': users,'winners':winners,'deposits':deposits,'pdd':pdd})
+            'users': users,
+            'winners':winners,
+            'deposits':deposits,
+            'pdd':pdd,
+            "frudDetectionDetail":frudDetectionDetail})
     else:
         return redirect('/')
 

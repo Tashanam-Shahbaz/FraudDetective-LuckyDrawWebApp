@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<nav class="custom-nav">
+  <a id="Logo" href="/user_admin">Lucky Drawer</a>
+  <div class="admin-profile">
+    <h3>{{user.username}}</h3>
+    <div class="admin-menu">
+      <div class="admin-img" id="adminImg">
+        <img src="../static/images/admin.png"
+          style="height: 35px;width: 35px;margin-left: 15px;border: 4px solid white;cursor: pointer;background-size: cover; border-radius: 50%;" />
+      </div>
+      <div class="dd-menu" id="dd-drop">
+        <div class="dd-left">
+          <ul>
+            <li><i class="fa-solid fa-layer-group"></i></li>
+            <li><i class="fa-solid fa-user-gear"></i></li>
+            <li><i class="fa-solid fa-right-from-bracket"></i></li>
+          </ul>
+        </div>
+        <div class="dd-right">
+          <ul>
+            <li><a href="/profile">Dashboard</a></li>
+            <li><a href="/deposit">Deposit Fund</a></li>
+            <!-- <li><a href="/update_admin">Update Profile</a></li> -->
+            <li><a href="/signout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="deposit-main-body">
+  <div class="custom-container-2">
+    <div class="custom-transparent-box" style=" margin-top: 2%;">
+      <div class="custom-form-container">
+        <h2>Demo Deposit Amount</h2>
+        <form method="post" class="custom-deposit-form">
+          {% csrf_token %}
+
+          <div class="custom-form-group">
+            <label for="username" class="depo-txt">User Name:</label>
+            <input type="text" value={{user.username}} id="username" name="username" required>
+          </div>
+
+          <div class="custom-form-group">
+            <label for="time" class="depo-txt">Time:</label>
+            <input type="number" id="time" name="time" required>
+          </div>
+
+          {% for i in numbers %}
+          <div class="custom-form-group">
+            <label for="V{{ i }}" class="depo-txt">V{{ i }}:</label>
+            <input type="number" id="V{{ i }}" name="V{{ i }}" class="depo-input" required>
+          </div>
+          {% endfor %}
+
+          <div class="custom-form-group">
+            <label for="time" class="depo-txt">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+          </div>
+          
+          <div class="custom-form-group">
+            <label for="comment" class="depo-txt">Comment:</label>
+            <input type="text" id="amount" name="comment" required>
+          </div>
+
+          <div class="custom-form-group">
+            <input class="depo-btn" type="submit" value="Deposit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <h3>Follow Us On Social Platform</h3>
+    <p>Lorem ipsum dolor sit consectetur adipisicing elit Mollitia distinctio officia necessitatibus accusantium.</p>
+    <div class="icons">
+      <i class="fa-brands fa-facebook-f"></i>
+      <i class="fa-brands fa-instagram"></i>
+      <i class="fa-brands fa-linkedin-in"></i>
+      <i class="fa-brands fa-x-twitter"></i>
+  </footer>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var adminImg = document.getElementById("adminImg");
+    var ddMenu = document.querySelector(".dd-menu");
+
+    adminImg.addEventListener("click", function () {
+      ddMenu.classList.toggle("show-dropdown");
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener("click", function (event) {
+      if (
+        !adminImg.contains(event.target) &&
+        !ddMenu.contains(event.target)
+      ) {
+        ddMenu.classList.remove("show-dropdown");
+      }
+    });
+  });
+</script>
+
+
+{% endif %}
+{% endblock %}

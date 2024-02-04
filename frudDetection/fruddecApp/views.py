@@ -1,30 +1,18 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import logout
-from django.shortcuts import HttpResponseRedirect
-from django import forms
-from django.contrib.auth.models import User
-from .models import Deposits,CustomUserCreationForm,CustomUserEditForm,DailyWinner,PrizeDistributionDetails
 from datetime import datetime
-from django.shortcuts import get_object_or_404
 from django.contrib import messages
-from fruddecApp.prize_management import select_daily_winner,credit_monthly_return
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login ,logout
+from fruddecApp.prize_management import select_daily_winner,credit_monthly_return,detect_fraudulent_activity
+from .models import Deposits,CustomUserCreationForm,CustomUserEditForm,DailyWinner,PrizeDistributionDetails
+
+
 
 # function run when the program start
-
 select_daily_winner()
 credit_monthly_return()
 
-def your_view(request):
-    # Your view logic...
-    messages.success(request, 'Your success message here.')
-    messages.warning(request, 'Your warning message here.')
-    messages.error(request, 'Your error message here.')
-    messages.info(request, 'Your info message here.')
-    messages.debug(request, 'Your debug message here.')
-    # Redirect or render the response
 
 def home(request): 
     return render(request, 'landing.html')
@@ -244,3 +232,38 @@ def select_winner(request):
 def credit_monthly_return_view(request):
     credit_monthly_return()
     return redirect("/user_admin")    
+
+
+
+def demo_frud_deposit(request):
+    
+    col_numbers = list(range(1, 29))
+    user = request.user
+    if user.is_authenticated:     
+        if request.method == 'POST':
+            
+            v_values =  [float(request.POST.get(f'V{i}', 0 )) for i in range(1, len(col_numbers) + 1 )]
+            v_values =  [float(request.POST.get('time', 0))] + v_values + [float(request.POST.get('amount', 0 ))]
+            comment  =  request.POST.get('comment')
+
+            result = detect_fraudulent_activity(user,v_values,comment)
+           
+            storage      = messages.get_messages(request)
+            storage.used = True
+            message_text = "Your deposit has been successfully submitted." if result else "Suspicious activity detected."
+            messages.success(request, message_text)
+            
+            return redirect("/profile") 
+        
+        return render(request, 'demo_deposit.html', {'user': request.user,'numbers':col_numbers}) # Get Method
+    else:
+        form = AuthenticationForm()
+
+        # Clear existing messages before adding a new one
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.success(request,"Oops! We encountered errors while processing your deposit."
+                         "To ensure a successful transaction, please log in again and re-submit your deposit." 
+                         "Thank you for your understanding")
+
+        return render(request, 'login.html', {'form': form})

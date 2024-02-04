@@ -1,9 +1,11 @@
 import random 
-from django.utils import timezone
-from fruddecApp.models import Deposits, DailyWinner, PrizeDistributionDetails  
-from django.db.models import Sum,F
+import joblib
 from decimal import Decimal
-from datetime import timedelta
+from django.utils import timezone
+from django.db.models import Sum,F
+from datetime import timedelta,datetime
+from fruddecApp.models import Deposits, DailyWinner, PrizeDistributionDetails , FrudulentActivityDetail
+
 
 def select_daily_winner():
     print("select_daily_winner")
@@ -69,5 +71,28 @@ def credit_monthly_return():
 
     print("TEST:", test)
     
-def detect_fraudulent_activity(user_id):
-    return False
+def detect_fraudulent_activity(user, input_value, comment):
+    loaded_bal_lr = joblib.load("fruddecApp\\weights\\bal_lr_weights.joblib")
+    result = loaded_bal_lr.predict([input_value])
+
+    deposit_data = {
+        'user': user,
+        'deposit_date': datetime.now(),
+        'comment': comment
+    }
+
+    if result[0] == 1:  # Fraudulent activity detected
+        deposit_data.update({'amount': 0, 'status': '3'})
+        deposit = Deposits.objects.create(**deposit_data)
+
+        FrudulentActivityDetail.objects.create(
+            deposit=deposit,
+            date_of_occurance=datetime.now(),
+            log="Fraud Activity Detected"
+        )
+        return False
+    else:
+        deposit_data.update({'amount': 100, 'status': '1'})
+        Deposits.objects.create(**deposit_data)
+
+    return True

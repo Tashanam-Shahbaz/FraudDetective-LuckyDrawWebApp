@@ -1199,6 +1199,14 @@ input[type="submit"] {
   background: linear-gradient(rgba(255, 255, 255,0.8), rgba(255, 255, 255,0.8)), url(../images/bg-reg-or-log.jpg);
 }
 
+.custom-container-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
 /* Default styles for the modal */
 .customizable-modal-2 {
   display: block;
@@ -1345,3 +1353,5 @@ input[type="submit"] {
 .option-button-container-profile > button:not(:last-of-type) {
   border-right: 1px solid #eee;
 }
+
+

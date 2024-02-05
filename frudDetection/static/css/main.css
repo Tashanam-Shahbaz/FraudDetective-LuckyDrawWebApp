@@ -1418,3 +1418,26 @@ input[type="submit"] {
 }
 
 
+.custom-form-fields label{
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+  text-align: left; /* Align text in input to the left */
+  width: 120px;
+  margin-left: -2%;
+}
+.custom-form-fields input{
+  height: 5%;
+  width: 285px;
+  border: none;
+  outline: none;
+  margin: 5px 0;
+  padding: 10px;
+  background: #f0f0f0;
+  font-size: 12px;
+  border-radius: 8px;
+  color: #008060;
+  font-weight: 700;
+  text-align: left; /* Align text in input to the left */
+
+}

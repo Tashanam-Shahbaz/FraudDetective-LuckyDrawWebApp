@@ -7,15 +7,15 @@ class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(max_length=254, help_text='Enter a valid email address', required=True)
-
+    address = forms.CharField(max_length=200, help_text='Enter a valid home address',required=True)
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
+        fields = ('username', 'first_name', 'last_name', 'email','address')
 
 class CustomUserEditForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = User
-        fields = ['username','first_name','last_name','password','email']  # Include the fields you want to display/edit
+        fields = ['username','first_name','last_name','password','email','address']  # Include the fields you want to display/edit
 
 
     def __init__(self, *args, **kwargs):

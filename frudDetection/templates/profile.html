@@ -59,8 +59,8 @@
   {% for deposit in deposits %}
   <tr>
     <td>{{forloop.counter}}</td>
-    <td>{{deposit.user.first_name}}</td>
-    <td>{{deposit.user.last_name}}</td>
+    <td>{{deposit.user.first_name|title  }}</td>
+    <td>{{deposit.user.last_name|title }}</td>
     <td>{{deposit.user.email}}</td>
     <td>{{deposit.deposit_date}}</td>
     <td>{{deposit.amount}}</td>
@@ -98,8 +98,8 @@
     {% for winner in winners %}
     <tr>
       <td>{{forloop.counter}}</td>
-      <td>{{winner.user.first_name}}</td>
-      <td>{{winner.user.last_name}}</td>
+      <td>{{winner.user.first_name|title }}</td>
+      <td>{{winner.user.last_name|title }}</td>
       <td>{{winner.user.email}}</td>
       <td>{{winner.user.address}}</td>
       <td>{{winner.winning_date}}</td>

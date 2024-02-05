@@ -1,7 +1,7 @@
 <nav class="custom-nav">
     <a id="Logo" href="/user_admin">Lucky Drawer</a>
     <div class="admin-profile">
-      <h3>{{user.username}}</h3>
+      <h3>{{ user.username|title }}</h3>
       <div class="admin-menu-2">
         <div class="admin-img" id="adminImg">
           <img src="../static/images/admin.png"
@@ -22,7 +22,7 @@
               <li><a href="/profile">Dashboard</a></li>
               <li><a href="/deposit">Deposit Fund</a></li>
               <li><a href="/demo_frud_deposit">Demo Deposit Fund</a></li>
-              <li><a href="/profile">Update Profile</a></li>
+              <li><a href="/update_user_2">Update Profile</a></li>
               <li><a href="/signout">Logout</a></li>
             </ul>
           </div>

@@ -3,35 +3,7 @@
 {% block content %}
 {% if user.is_authenticated %}
 
-<nav class="custom-nav">
-  <a id="Logo" href="/user_admin">Lucky Drawer</a>
-  <div class="admin-profile">
-    <h3>{{user.username}}</h3>
-    <div class="admin-menu">
-      <div class="admin-img" id="adminImg">
-        <img src="../static/images/admin.png"
-          style="height: 35px;width: 35px;margin-left: 15px;border: 4px solid white;cursor: pointer;background-size: cover; border-radius: 50%;" />
-      </div>
-      <div class="dd-menu" id="dd-drop">
-        <div class="dd-left">
-          <ul>
-            <li><i class="fa-solid fa-layer-group"></i></li>
-            <li><i class="fa-solid fa-user-gear"></i></li>
-            <li><i class="fa-solid fa-right-from-bracket"></i></li>
-          </ul>
-        </div>
-        <div class="dd-right">
-          <ul>
-            <li><a href="/profile">Dashboard</a></li>
-            <li><a href="/deposit">Deposit Fund</a></li>
-            <!-- <li><a href="/update_admin">Update Profile</a></li> -->
-            <li><a href="/signout">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
+{% include 'user_nav_bar.html' %}
 
 <div class="deposit-main-body">
   <div class="custom-container-2">
@@ -90,7 +62,7 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     var adminImg = document.getElementById("adminImg");
-    var ddMenu = document.querySelector(".dd-menu");
+    var ddMenu = document.querySelector(".dd-menu-2");
 
     adminImg.addEventListener("click", function () {
       ddMenu.classList.toggle("show-dropdown");

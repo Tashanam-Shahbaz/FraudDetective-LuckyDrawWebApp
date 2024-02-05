@@ -44,6 +44,40 @@
     </div>
 </div>
 
+
+<!-- <div class="reg-parent">
+  <div class="register-page">
+    <h1>Update Profile</h1>
+    <form method="post">
+
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="custom-form-fields">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input class="register-page-input" 
+        type="{{field.field.widget.input_type}}" name="{{field.html_name}}" 
+      placeholder="
+                {% if field.label == 'Username' %}{{user.username}}
+                {% elif field.label == 'First name' %}{{user.first_name}}
+                {% elif field.label == 'Last name' %}{{user.last_name}}
+                {% elif field.label == 'Password' %}{{'Set New Password'}}
+                {% elif field.label == 'Email address' %}{{user.email}}
+                {% endif %}
+                " 
+      />
+        {% for error in field.errors %}
+        <p style="color: red">{{error}}</p>
+        {% endfor %}
+
+      </div>
+      {% endfor %}
+
+      <button type="submit" class="reg-btn">Update</button>
+
+    </form>
+  </div>
+</div> -->
+
 <footer style="background-color: #14a37f;">
     <h3 style="color: white;">Follow Us On Social Platform</h3>
     <p style="color: white;">Lorem ipsum dolor sit consectetur adipisicing elit Mollitia distinctio officia necessitatibus accusantium.</p>

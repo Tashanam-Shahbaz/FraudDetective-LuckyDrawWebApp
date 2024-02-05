@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% include 'admin_nav_bar.html' %}
+{% include 'user_nav_bar.html' %}
 
 <div class="reg-parent">
   <div class="register-page">
@@ -60,7 +60,7 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     var adminImg = document.getElementById("adminImg");
-    var ddMenu = document.querySelector(".dd-menu");
+    var ddMenu = document.querySelector(".dd-menu-2");
 
     adminImg.addEventListener("click", function () {
       ddMenu.classList.toggle("show-dropdown");

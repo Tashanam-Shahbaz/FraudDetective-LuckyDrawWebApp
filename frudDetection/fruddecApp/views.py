@@ -6,8 +6,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login ,logout
 from fruddecApp.prize_management import select_daily_winner,credit_monthly_return,detect_fraudulent_activity
 from .models import Deposits,CustomUserCreationForm,CustomUserEditForm,DailyWinner,PrizeDistributionDetails,FrudulentActivityDetail
-
-
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import update_session_auth_hash
 
 # function run when the program start
 select_daily_winner()
@@ -28,6 +28,7 @@ def signin(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        print(password)
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -146,6 +147,34 @@ def deposit(request):
         return render(request, 'login.html', {'form': form})
 
 
+def update_user_2(request):
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        # Clear existing messages before adding a new one
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.error(request, 'Sign in Again')
+        return redirect('signin')
+
+    form = CustomUserEditForm(request.POST, instance=user) if request.method == 'POST' else CustomUserEditForm(instance=user)
+
+    if request.method == 'POST' and form.is_valid():
+        password = request.POST.get('password', '').strip()
+        user.set_password(password)
+        form.save()
+        user.save()
+        update_session_auth_hash(request, user)
+        
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.success(request, 'User updated successfully')
+        return redirect('profile')
+    elif request.method == 'POST':
+        messages.error(request, 'Please correct the errors in the form.')
+
+    return render(request, 'update_user_2.html', {'form': form, 'user': user})
+
 def user_admin(request):
     if request.user.is_authenticated and request.user.is_superuser:
        # Retrieve all records from the table
@@ -164,26 +193,33 @@ def user_admin(request):
     else:
         return redirect('/')
 
-def update_admin(request, user_id):
-    user = User.objects.get(id=user_id)
-    
-    if request.method == 'POST':
-        form = CustomUserEditForm(request.POST, instance=user)
-        print(form)
-        print(form.is_valid())
-        if form.is_valid():
-            form.save()
-
-            # Clear existing messages before adding a new one
-            storage = messages.get_messages(request)
-            storage.used = True
-            messages.success(request, 'Admin updated successfully')
-            return redirect('/user_admin')
+def update_admin(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        user = request.user
     else:
-        form = CustomUserEditForm()
-    
-    return render(request, 'update_admin.html', {'form': form, 'user': user})
+        # Clear existing messages before adding a new one
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.error(request, 'Sign in Again')
+        return redirect('signin')
 
+    form = CustomUserEditForm(request.POST, instance=user) if request.method == 'POST' else CustomUserEditForm(instance=user)
+
+    if request.method == 'POST' and form.is_valid():
+        password = request.POST.get('password', '').strip()
+        user.set_password(password)
+        form.save()
+        user.save()
+        update_session_auth_hash(request, user)
+        
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.success(request, 'Admin updated successfully')
+        return redirect('user_admin')
+    elif request.method == 'POST':
+        messages.error(request, 'Please correct the errors in the form.')
+
+    return render(request, 'update_admin.html', {'form': form, 'user': user})
 
 def add_user(request):
    

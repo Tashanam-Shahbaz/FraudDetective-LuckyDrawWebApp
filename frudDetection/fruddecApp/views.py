@@ -96,10 +96,23 @@ def signup(request):
 def profile(request):
     if request.user.is_authenticated:
         user = request.user
-        deposits = Deposits.objects.filter(user=user)
-        winners = DailyWinner.objects.all()
+        deposits = Deposits.objects.filter(user=user).order_by('deposit_date').reverse()
+        winners = DailyWinner.objects.all().order_by('winning_date').reverse()   
 
-        return render(request, 'profile.html', {'deposits': deposits,'winners':winners})
+                # Check if there is a winner for today
+        today_winner = None
+        today = datetime.now().date()
+        if winners[0].winning_date.date() == today:
+            today_winner = winners[0]
+
+        # Prepare winner message
+        winner_msg = ""
+        if today_winner:
+            winner_msg = f"Today's winner: {today_winner.user.first_name} { today_winner.user.last_name}"
+        else:
+            winner_msg = "Today \'s winner has not been announced yet."
+
+        return render(request, 'profile.html', {'deposits': deposits,'winners':winners,   "winner_msg":winner_msg})
     else:
         # Handle the case when the user is not authenticated
         return render(request, 'profile.html', {'deposits': None})
@@ -179,17 +192,34 @@ def user_admin(request):
     if request.user.is_authenticated and request.user.is_superuser:
        # Retrieve all records from the table
         users = User.objects.filter(is_superuser=False)
-        winners = DailyWinner.objects.all()
+        winners = DailyWinner.objects.all().order_by('winning_date').reverse()   
         frudDetectionDetail = FrudulentActivityDetail.objects.all()
         frud_deposit_id = frudDetectionDetail.values_list('deposit_id', flat=True)
-        deposits = Deposits.objects.exclude(deposit_id__in=frud_deposit_id)
+        deposits = Deposits.objects.exclude(deposit_id__in=frud_deposit_id).order_by('deposit_date').reverse()
         pdd = PrizeDistributionDetails.objects.all()
+
+        
+        # Check if there is a winner for today
+        today_winner = None
+        today = datetime.now().date()
+        if winners[0].winning_date.date() == today:
+            today_winner = winners[0]
+
+        # Prepare winner message
+        winner_msg = ""
+        if today_winner:
+            winner_msg = f"Today's winner: {today_winner.user.first_name} { today_winner.user.last_name}"
+        else:
+            winner_msg = "Today \'s winner has not been announced yet."
+       
         return render(request, 'admin.html',{
             'users': users,
             'winners':winners,
             'deposits':deposits,
             'pdd':pdd,
-            "frudDetectionDetail":frudDetectionDetail})
+            "frudDetectionDetail":frudDetectionDetail,
+            "winner_msg":winner_msg
+            })
     else:
         return redirect('/')
 

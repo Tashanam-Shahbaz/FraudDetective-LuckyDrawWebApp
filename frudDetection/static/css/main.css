@@ -1441,3 +1441,51 @@ input[type="submit"] {
   text-align: left; /* Align text in input to the left */
 
 }
+
+/* Popup container */
+#popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  z-index: 9999;
+  max-width: 400px; /* Adjust width as needed */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
+  height: 137px;
+  width: 300px;
+}
+
+/* Close button */
+#closePopup {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Heading */
+#popup h2 {
+  margin-top: 0;
+}
+
+/* Message */
+#winnerMessage {
+  margin-bottom: 0;
+}
+#winnerPopup{
+  background-color: #14a37f;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 8px;
+  transition: 0.5s;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+}

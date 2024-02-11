@@ -23,6 +23,14 @@
 {% endif %}
 
 
+<!-- Popup structure -->
+<div id="popup">
+  <button id="closePopup">&times;</button>
+  <h2>Today's Winner</h2>
+  <p id="winnerMessage"></p>
+</div>
+
+
 <div class="main-option-button-container-profile">
   <div class="option-button-container-profile">
     <button tag="0">My Deposit Detail</button>
@@ -79,6 +87,7 @@
   <div class="user-data-admin" id="box-1" style="display: none;">
     <div class="user-content" style="margin-left:2%;">
       <h2 style="font-weight: bold;">Winner Information</h2>
+      <a id="winnerPopup">See Today Winner</a>
     </div>
     <div class="winners">
 <table >
@@ -195,6 +204,19 @@ btnContainer.addEventListener('click', function (event) {
     document.getElementById(`box-${tagValue}`).style.display = 'block';
   }
 });
+
+document.getElementById('winnerPopup').addEventListener('click', function() {
+        // Display the popup
+        document.getElementById('popup').style.display = 'block';
+        // Set the winner message
+        document.getElementById('winnerMessage').innerText = "{{ winner_msg|safe|title }}";
+    });
+
+    document.getElementById('closePopup').addEventListener('click', function() {
+        // Hide the popup when the close button is clicked
+        document.getElementById('popup').style.display = 'none';
+    });
+
 
   });
 </script> 

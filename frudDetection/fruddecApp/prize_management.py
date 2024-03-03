@@ -11,8 +11,14 @@ def select_daily_winner():
     print("select_daily_winner")
     current_date ,current_datetime, = datetime.now().date(),datetime.now()
     last_with_draw_date = (DailyWinner.objects.latest("winning_date").winning_date).date()
+    
+    if DailyWinner.objects.exists():
+        last_with_draw_date = (DailyWinner.objects.latest("winning_date").winning_date).date()
+    else:
+         last_with_draw_date  =   current_date
+    
     if(last_with_draw_date >= current_date):
-        return 
+         return
     
     # Ensure last_with_draw_datetime is not None
     last_with_draw_date = last_with_draw_date if last_with_draw_date else current_date

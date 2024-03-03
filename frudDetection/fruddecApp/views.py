@@ -102,7 +102,7 @@ def profile(request):
                 # Check if there is a winner for today
         today_winner = None
         today = datetime.now().date()
-        if winners[0].winning_date.date() == today:
+        if winners and winners[0].winning_date.date() == today:
             today_winner = winners[0]
 
         # Prepare winner message
@@ -202,7 +202,7 @@ def user_admin(request):
         # Check if there is a winner for today
         today_winner = None
         today = datetime.now().date()
-        if winners[0].winning_date.date() == today:
+        if winners is list and winners[0].winning_date.date() == today:
             today_winner = winners[0]
 
         # Prepare winner message

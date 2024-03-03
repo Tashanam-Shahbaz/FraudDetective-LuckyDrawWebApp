@@ -131,6 +131,13 @@ venv.bak/
 .vscode
 .vscode/
 
+
+myenv
+./myenv
+
+.venv
+./.venv
+
 # Spyder project settings
 .spyderproject
 .spyproject

@@ -10,13 +10,15 @@ from fruddecApp.models import Deposits, DailyWinner, PrizeDistributionDetails , 
 def select_daily_winner():
     print("select_daily_winner")
     current_date ,current_datetime, = datetime.now().date(),datetime.now()
-    last_with_draw_date = (DailyWinner.objects.latest("winning_date").winning_date).date()
     
     if DailyWinner.objects.exists():
         last_with_draw_date = (DailyWinner.objects.latest("winning_date").winning_date).date()
     else:
-         last_with_draw_date  =   current_date
-    
+        # Get the smallest date from the Deposit table
+        smallest_deposit_date = Deposits.objects.aggregate(Min('deposit_date'))['deposit_date__min']
+        last_with_draw_date = smallest_deposit_date.date() if smallest_deposit_date else current_date
+        print("here",last_with_draw_date)
+
     if(last_with_draw_date >= current_date):
          return
     

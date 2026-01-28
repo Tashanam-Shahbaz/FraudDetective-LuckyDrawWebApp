@@ -3,6 +3,7 @@ import joblib
 from decimal import Decimal
 from django.utils import timezone
 from django.db.models import Sum,F
+from django.db.models import Min
 from datetime import timedelta,datetime
 from fruddecApp.models import Deposits, DailyWinner, PrizeDistributionDetails , FrudulentActivityDetail
 
